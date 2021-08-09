@@ -18,11 +18,11 @@ class CreatePacientesTable extends Migration
             $table->bigInteger('idpaciente')->unsigned()->autoIncrement();
             $table->string('nombrepaciente');
             $table->string('apellidopaciente');
-            $table->foreignId('idtipodocumento');
+            $table->foreignId('id_tipodocumento');
             $table->double('documentopaciente');
             $table->string('correopaciente');
             $table->double('telefonopaciente');
-            $table->foreignId('idacudiente');
+            $table->foreignId('id_estado');
             $table->timestamps();
         });
     }

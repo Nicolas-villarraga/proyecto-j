@@ -16,12 +16,13 @@ class CreateProveedorsTable extends Migration
     {
         Schema::create('proveedors', function (Blueprint $table) {
             $table->bigInteger('idproveedor')->unsigned()->autoIncrement();
-            $table->foreignId('nitproveedor');
+            $table->foreignId('id_nitproveedor');
             $table->ipAddress('direccionproveedor');
             $table->double('telefonoproveedor');
             $table->string('correoproveedor');
             $table->string('marcaproveedor');
             $table->string('nombreproveedor');
+            $table->foreignId('id_producto');
             $table->timestamps();
         });
     }

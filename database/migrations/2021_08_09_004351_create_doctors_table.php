@@ -17,7 +17,7 @@ class CreateDoctorsTable extends Migration
             $table->bigInteger('iddoctor')->unsigned()->autoIncrement();
             $table->string('nombredoctor');
             $table->string('apellidodoctor');
-            $table->foreignId('idespecialidad');
+            $table->foreignId('id_especialidad');
             $table->timestamps();
         });
     }

@@ -16,10 +16,12 @@ class CreateAcudientesTable extends Migration
         Schema::create('acudientes', function (Blueprint $table) {
             $table->bigInteger('idacudiente')->unsigned()->autoIncrement();
             $table->string('nombreacudiente');
-            $table->foreignId('idtipodedocumento');
+            $table->foreignId('id_tipodedocumento');
             $table->double('documentoacudiente');
             $table->string('parentescoacudiente');
             $table->double('telefonoacudiente');
+            $table->foreignId('id_paciente');
+            $table->foreignId('id_estado');
             $table->timestamps();
         });
     }

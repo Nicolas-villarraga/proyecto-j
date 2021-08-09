@@ -16,9 +16,12 @@ class CreateCitasTable extends Migration
     {
         Schema::create('citas', function (Blueprint $table) {
             $table->bigInteger('idcita')->unsigned()->autoIncrement();
-            $table->foreignId('idespecialidad');
-            $table->foreignId('iddoctor');
+            $table->string('especialidad');
+            $table->foreignId('id_doctor');
             $table->dateTime('fechayhora');
+            $table->foreignId('id_paciente');
+            $table->foreignId('id_estado');
+            $table->foreignId('id_historiaclinica');
             $table->timestamps();
         });
     }

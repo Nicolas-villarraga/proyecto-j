@@ -16,9 +16,13 @@ class CreateDetalleproductosTable extends Migration
         Schema::create('detalleproductos', function (Blueprint $table) {
             $table->bigInteger('iddetalle')->unsigned()->autoIncrement();
             $table->string('nombredetallepedido');
-            $table->string('descripciondetallepedido');
+            $table->longText('descripciondetallepedido');
             $table->double('cantidadproducto');
             $table->double('valordetalleproducto');
+            $table->foreignId('id_pedido');
+            $table->foreignId('id_paciente');
+            $table->foreignId('id_estado');
+            $table->foreignId('id_producto');
             $table->timestamps();
         });
     }

@@ -18,7 +18,10 @@ class CreatePedidosTable extends Migration
             $table->date('fechapedido');
             $table->time('horapedido');
             $table->double('totalpedido');
-            $table->string('observacionpedido');
+            $table->longText('observacionpedido');
+            $table->foreignId('id_paciente');
+            $table->foreignId('id_estado');
+            $table->foreignId('id_doctor');
             $table->timestamps();
         });
     }

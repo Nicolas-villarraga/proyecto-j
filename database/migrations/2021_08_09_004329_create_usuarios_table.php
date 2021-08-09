@@ -17,11 +17,14 @@ class CreateUsuariosTable extends Migration
             $table->bigInteger('idusuario')->unsigned()->autoIncrement();
             $table->string('nombreusuario');
             $table->string('apellidousuario');
-            $table->foreignId('idtipodocumento');
+            $table->foreignId('id_tipodocumento');
             $table->double('documentousuario');
             $table->string('correousuario');
             $table->double('telefonousuario');
-            $table->foreignId('idrol');
+            $table->foreignId('id_rol');
+            $table->foreignId('id_genero');
+            $table->foreignId('id_paciente');
+            $table->foreignId('id_doctor');
             $table->timestamps();
         });
     }
