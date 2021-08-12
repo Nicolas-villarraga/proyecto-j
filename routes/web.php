@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CitaController;
+use App\Http\Controllers\DetalleproductoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductoController;
 /*
@@ -18,12 +19,13 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-
 Route::resource('citas',CitaController::class);
-Route::resource('productos', ProductoController::class);
+Route::resource('detalleproductos', DetalleproductoController::class);
 
 
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+
+Route::resource('productos', ProductoController::class);
