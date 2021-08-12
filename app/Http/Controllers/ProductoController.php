@@ -15,6 +15,8 @@ class ProductoController extends Controller
     public function index()
     {
         //
+        $datos['productos']=producto::paginate(5);
+        return view('productos.index',$datos );
     }
 
     /**
@@ -25,6 +27,7 @@ class ProductoController extends Controller
     public function create()
     {
         //
+        return view('productos.create');
     }
 
     /**
@@ -36,6 +39,23 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         //
+        //$datosProducto = request()->all(); 
+        $datosProducto = request()->except('_token'); 
+
+        if($request->hasFile('fotoproducto')) {
+            $datosProducto['fotoproducto']=$request->file('fotoproducto')->store('uploads','public');
+        
+        
+        }
+        
+        
+
+
+
+
+        Producto::insert($datosProducto);
+
+        return response()->json($datosProducto);
     }
 
     /**
@@ -78,8 +98,10 @@ class ProductoController extends Controller
      * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Producto $producto)
+    public function destroy($id)
     {
         //
+        Producto::destroy($id);
+        return redirect('productos');
     }
 }
