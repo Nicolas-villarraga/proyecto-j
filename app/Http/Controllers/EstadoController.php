@@ -15,6 +15,8 @@ class EstadoController extends Controller
     public function index()
     {
         //
+        $estado['estados']=Estado::paginate(5);
+        return view('estados.index',$estado);
     }
 
     /**
@@ -25,6 +27,7 @@ class EstadoController extends Controller
     public function create()
     {
         //
+        return view('estados.create');
     }
 
     /**
@@ -36,6 +39,22 @@ class EstadoController extends Controller
     public function store(Request $request)
     {
         //
+        $campos=[
+            'nombreestado'=>'required|string|max:100', 
+        ];
+
+        $mensaje=[
+            'required'=>'El  :attribute es requerido'
+        ];
+
+        $this->validate($request, $campos,$mensaje);
+
+
+        $estado = request()->except('_token');
+        Estado::insert($estado);
+        //return response()->json($cita);
+
+        return redirect('estados')->with('mensaje','Estado creado con exito');
     }
 
     /**
@@ -55,9 +74,12 @@ class EstadoController extends Controller
      * @param  \App\Models\Estado  $estado
      * @return \Illuminate\Http\Response
      */
-    public function edit(Estado $estado)
+    public function edit($id)
     {
         //
+        $estado = Estado::findOrFail($id);
+        return view('estados.edit',compact('estado'));
+
     }
 
     /**
@@ -67,9 +89,26 @@ class EstadoController extends Controller
      * @param  \App\Models\Estado  $estado
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Estado $estado)
+    public function update(Request $request,$id)
     {
         //
+        $campos=[
+            'nombreestado'=>'required|string|max:100',
+  
+        ];
+
+        $mensaje=[
+            'required'=>'El  :attribute es requerido'
+        ];
+
+        $this->validate($request, $campos,$mensaje);
+
+        $estado = request()->except(['_token','_method']);
+        Estado::where('id','=',$id)->update($estado);
+
+        $estado = Estado::findOrFail($id);
+        //return view('citas.edit',compact('cita'));
+        return redirect('estados')->with('mensaje','Estado Modificado');
     }
 
     /**
@@ -78,8 +117,10 @@ class EstadoController extends Controller
      * @param  \App\Models\Estado  $estado
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Estado $estado)
+    public function destroy($id)
     {
         //
+        Estado::destroy($id);
+        return redirect('estados')->with('mensaje','Estado eliminado');
     }
 }

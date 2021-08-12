@@ -15,6 +15,8 @@ class AcudienteController extends Controller
     public function index()
     {
         //
+        $acudiente['acudientes']=Acudiente::paginate(5);
+        return view('acudientes.index',$acudiente);
     }
 
     /**
@@ -25,6 +27,7 @@ class AcudienteController extends Controller
     public function create()
     {
         //
+        return view('acudientes.create');
     }
 
     /**
@@ -36,6 +39,27 @@ class AcudienteController extends Controller
     public function store(Request $request)
     {
         //
+        $campos=[
+            'nombreacudiente'=>'required|string|max:100',
+            'tipodocumentopaciente'=>'required|string|max:50',
+            'documentoacudiente'=>'required|string|max:100',
+            'parentescoacudiente'=>'required|string|max:100',
+            'telefonoacudiente'=>'required|string|max:100',  
+        ];
+
+        $mensaje=[
+            'required'=>'El  :attribute es requerido'
+        ];
+
+        $this->validate($request, $campos,$mensaje);
+
+
+        $acudiente = request()->except('_token');
+        Acudiente::insert($acudiente);
+        //return response()->json($cita);
+
+        return redirect('acudientes')->with('mensaje','acudiente creado con exito'); 
+
     }
 
     /**
@@ -55,9 +79,11 @@ class AcudienteController extends Controller
      * @param  \App\Models\Acudiente  $acudiente
      * @return \Illuminate\Http\Response
      */
-    public function edit(Acudiente $acudiente)
+    public function edit($id)
     {
         //
+        $acudiente = Acudiente::findOrFail($id);
+        return view('acudientes.edit',compact('acudiente'));
     }
 
     /**
@@ -67,9 +93,30 @@ class AcudienteController extends Controller
      * @param  \App\Models\Acudiente  $acudiente
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Acudiente $acudiente)
+    public function update(Request $request, $id)
     {
         //
+        $campos=[
+            'nombreacudiente'=>'required|string|max:100',
+            'tipodocumentopaciente'=>'required|string|max:50',
+            'documentoacudiente'=>'required|string|max:100',
+            'parentescoacudiente'=>'required|string|max:100',
+            'telefonoacudiente'=>'required|string|max:100',   
+        ];
+
+        $mensaje=[
+            'required'=>'El  :attribute es requerido'
+        ];
+
+        $this->validate($request, $campos,$mensaje);
+
+        $acudiente = request()->except(['_token','_method']);
+        Acudiente::where('id','=',$id)->update($acudiente);
+
+        $acudiente = Acudiente::findOrFail($id);
+        //return view('citas.edit',compact('cita'));
+        return redirect('acudientes')->with('mensaje','acudiente Modificado');
+
     }
 
     /**
@@ -78,8 +125,10 @@ class AcudienteController extends Controller
      * @param  \App\Models\Acudiente  $acudiente
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Acudiente $acudiente)
+    public function destroy($id)
     {
         //
+        Acudiente::destroy($id);
+        return redirect('acudientes')->with('mensaje','Acudiente eliminado');
     }
 }

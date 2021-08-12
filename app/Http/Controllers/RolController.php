@@ -15,6 +15,8 @@ class RolController extends Controller
     public function index()
     {
         //
+        $rol['rols']=Rol::paginate(6);
+        return view('rols.index',$rol);
     }
 
     /**
@@ -25,6 +27,7 @@ class RolController extends Controller
     public function create()
     {
         //
+        return view('rols.create');
     }
 
     /**
@@ -36,6 +39,22 @@ class RolController extends Controller
     public function store(Request $request)
     {
         //
+        $campos=[
+            'nombrerol'=>'required|string|max:100',  
+        ];
+
+        $mensaje=[
+            'required'=>'El  :attribute es requerido'
+        ];
+
+        $this->validate($request, $campos,$mensaje);
+
+
+        $rol = request()->except('_token');
+        Rol::insert($rol);
+        //return response()->json($cita);
+
+        return redirect('rols')->with('mensaje','Rol creado con exito');
     }
 
     /**
@@ -55,9 +74,11 @@ class RolController extends Controller
      * @param  \App\Models\Rol  $rol
      * @return \Illuminate\Http\Response
      */
-    public function edit(Rol $rol)
+    public function edit($id)
     {
         //
+        $rol = Rol::findOrFail($id);
+        return view('rols.edit',compact('rol'));
     }
 
     /**
@@ -67,9 +88,27 @@ class RolController extends Controller
      * @param  \App\Models\Rol  $rol
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Rol $rol)
+    public function update(Request $request, $id)
     {
         //
+        $campos=[
+            'nombrerol'=>'required|string|max:100',
+  
+        ];
+
+        $mensaje=[
+            
+            'required'=>'El  :attribute es requerido'
+        ];
+
+        $this->validate($request, $campos,$mensaje);
+
+        $rol = request()->except(['_token','_method']);
+        Rol::where('id','=',$id)->update($rol);
+
+        $rol = Rol::findOrFail($id);
+        //return view('rols.edit',compact('rol'));
+        return redirect('rols')->with('mensaje','Rol Modificado');
     }
 
     /**
@@ -78,8 +117,11 @@ class RolController extends Controller
      * @param  \App\Models\Rol  $rol
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Rol $rol)
+    public function destroy($id)
     {
         //
+        Rol::destroy($id);
+        return redirect('rols')->with('mensaje','Rol eliminado');
+
     }
 }

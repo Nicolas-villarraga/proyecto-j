@@ -1,9 +1,14 @@
 <?php
 
+use App\Http\Controllers\AcudienteController;
 use App\Http\Controllers\CitaController;
 use App\Http\Controllers\DetalleproductoController;
+use App\Http\Controllers\EstadoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\RolController;
+use App\Http\Controllers\TipodocumentoController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,6 +26,10 @@ Route::get('/', function () {
 
 Route::resource('citas',CitaController::class);
 Route::resource('detalleproductos', DetalleproductoController::class);
+Route::resource('tipodocumentos',TipodocumentoController::class);
+Route::resource('rols',RolController::class);
+Route::resource('estados',EstadoController::class);
+Route::resource('acudientes',AcudienteController::class);
 
 
 
