@@ -14,14 +14,12 @@ class CreateAcudientesTable extends Migration
     public function up()
     {
         Schema::create('acudientes', function (Blueprint $table) {
-            $table->bigInteger('idacudiente')->unsigned()->autoIncrement();
-            $table->string('nombreacudiente');
-            $table->foreignId('id_tipodedocumento');
+            $table->id();
+            $table->string('nombreacudiente',75);
+            $table->string('tipodocumentopaciente',75);
             $table->double('documentoacudiente');
-            $table->string('parentescoacudiente');
+            $table->string('parentescoacudiente',75);
             $table->double('telefonoacudiente');
-            $table->foreignId('id_paciente');
-            $table->foreignId('id_estado');
             $table->timestamps();
         });
     }

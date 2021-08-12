@@ -14,17 +14,14 @@ class CreateUsuariosTable extends Migration
     public function up()
     {
         Schema::create('usuarios', function (Blueprint $table) {
-            $table->bigInteger('idusuario')->unsigned()->autoIncrement();
-            $table->string('nombreusuario');
-            $table->string('apellidousuario');
-            $table->foreignId('id_tipodocumento');
+            $table->id('idusuario',75);
+            $table->string('nombreusuario',75);
+            $table->string('apellidousuario',75);
+            $table->string('tipodocumento');
             $table->double('documentousuario');
             $table->string('correousuario');
             $table->double('telefonousuario');
-            $table->foreignId('id_rol');
-            $table->foreignId('id_genero');
-            $table->foreignId('id_paciente');
-            $table->foreignId('id_doctor');
+            $table->string('rolusuario');
             $table->timestamps();
         });
     }

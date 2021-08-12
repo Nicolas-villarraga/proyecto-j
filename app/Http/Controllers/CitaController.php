@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cita;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Event\ViewEvent;
 
 class CitaController extends Controller
 {
@@ -15,6 +16,8 @@ class CitaController extends Controller
     public function index()
     {
         //
+        $cita['citas']=Cita::paginate(5);
+        return view('citas.index',$cita);
     }
 
     /**
@@ -25,6 +28,7 @@ class CitaController extends Controller
     public function create()
     {
         //
+        return view('citas.create');
     }
 
     /**
@@ -36,6 +40,26 @@ class CitaController extends Controller
     public function store(Request $request)
     {
         //
+        $campos=[
+            'especialidad'=>'required|string|max:100',
+            'doctor'=>'required|string|max:50',
+            'fecha'=>'required|date',
+            'hora'=>'required|',  
+        ];
+
+        $mensaje=[
+            'required'=>'El  :attribute es requerido'
+        ];
+
+        $this->validate($request, $campos,$mensaje);
+
+
+        $cita = request()->except('_token');
+        Cita::insert($cita);
+        //return response()->json($cita);
+
+        return redirect('citas')->with('mensaje','Cita creada con exito'); 
+
     }
 
     /**
@@ -55,9 +79,10 @@ class CitaController extends Controller
      * @param  \App\Models\Cita  $cita
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cita $cita)
+    public function edit($id)
     {
-        //
+        $cita = Cita::findOrFail($id);
+        return view('citas.edit',compact('cita'));
     }
 
     /**
@@ -67,9 +92,29 @@ class CitaController extends Controller
      * @param  \App\Models\Cita  $cita
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cita $cita)
+    public function update(Request $request, $id)
     {
-        //
+
+        $campos=[
+            'especialidad'=>'required|string|max:100',
+            'doctor'=>'required|string|max:50',
+            'fecha'=>'required|date',
+            'hora'=>'required|string',  
+        ];
+
+        $mensaje=[
+            'required'=>'El  :attribute es requerido'
+        ];
+
+        $this->validate($request, $campos,$mensaje);
+
+        $cita = request()->except(['_token','_method']);
+        Cita::where('id','=',$id)->update($cita);
+
+        $cita = Cita::findOrFail($id);
+        //return view('citas.edit',compact('cita'));
+        return redirect('citas')->with('mensaje','cita Modificada');
+
     }
 
     /**
@@ -78,8 +123,9 @@ class CitaController extends Controller
      * @param  \App\Models\Cita  $cita
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cita $cita)
+    public function destroy($id)
     {
-        //
+        Cita::destroy($id);
+        return redirect('citas')->with('mensaje','cita cancelada');
     }
 }

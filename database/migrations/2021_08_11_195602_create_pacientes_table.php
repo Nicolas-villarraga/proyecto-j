@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use League\CommonMark\Extension\Table\Table;
 
 class CreatePacientesTable extends Migration
 {
@@ -15,14 +14,15 @@ class CreatePacientesTable extends Migration
     public function up()
     {
         Schema::create('pacientes', function (Blueprint $table) {
-            $table->bigInteger('idpaciente')->unsigned()->autoIncrement();
-            $table->string('nombrepaciente');
-            $table->string('apellidopaciente');
-            $table->foreignId('id_tipodocumento');
+            $table->id();
+            $table->string('nombrepaciente',75);
+            $table->string('apellidopaciente',75);
+            $table->string('tipodocumento',75);
             $table->double('documentopaciente');
-            $table->string('correopaciente');
+            $table->string('correopaciente',175);
             $table->double('telefonopaciente');
-            $table->foreignId('id_estado');
+            $table->string('acudientepaciente',75);
+            $table->string('estado');
             $table->timestamps();
         });
     }

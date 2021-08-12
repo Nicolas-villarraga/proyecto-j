@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use League\CommonMark\Extension\Table\Table;
 
 class CreateProductosTable extends Migration
 {
@@ -15,11 +14,11 @@ class CreateProductosTable extends Migration
     public function up()
     {
         Schema::create('productos', function (Blueprint $table) {
-            $table->bigInteger('idproducto')->unsigned()->autoIncrement();
-            $table->string('nombreproducto');
+            $table->id();
+            $table->string('nombreproducto',75);
             $table->longText('descripcionproducto');
-            $table->double('preciocompraproducto');
-            $table->double('precioventaproducto');
+            $table->double('preciocompra');
+            $table->double('precioventa');
             $table->double('cantidadproducto');
             $table->timestamps();
         });

@@ -14,11 +14,9 @@ class CreateHistoriaclinicasTable extends Migration
     public function up()
     {
         Schema::create('historiaclinicas', function (Blueprint $table) {
-            $table->bigInteger('idhistoriaclinica')->unsigned()->autoIncrement();
-            $table->time('fechacreacionhistoriaclinica');
-            $table->longText('descripcionhistoriaclinica');
-            $table->foreignId('id_doctor');
-            $table->foreignId('id_paciente');
+            $table->id();
+            $table->dateTime('fechacreacionhistoria');
+            $table->longText('drescipciohistoriaclinica');
             $table->timestamps();
         });
     }

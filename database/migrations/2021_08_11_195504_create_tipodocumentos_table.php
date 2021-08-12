@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEspecialidadsTable extends Migration
+class CreateTipodocumentosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateEspecialidadsTable extends Migration
      */
     public function up()
     {
-        Schema::create('especialidads', function (Blueprint $table) {
-            $table->bigInteger('idespecialidad')->unsigned()->autoIncrement();
-            $table->string('nombreespecialidad');
+        Schema::create('tipodocumentos', function (Blueprint $table) {
+            $table->id();
+            $table->string('nombretipodocumento');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateEspecialidadsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('especialidads');
+        Schema::dropIfExists('tipodocumentos');
     }
 }
