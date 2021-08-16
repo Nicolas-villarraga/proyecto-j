@@ -1,5 +1,18 @@
 
-<h1> {{ $modo }} producto </h1>
+<h2> {{ $modo }} producto </h2>
+
+
+@if(count($errors)>0)
+<div class="alert alert-danger" role="alert">
+ <ul>   
+    @foreach($errors->all() as $error)
+      <li>{{ $error }}</li>
+    @endforeach
+</ul>
+</div>
+
+@endif
+
 <label for="nombreproducto"> Nombre Producto</label>
 <input type="text" name="nombreproducto" value="{{ isset($producto->nombreproducto)?$producto->nombreproducto:'' }}" id="nombreproducto">
 <br>

@@ -1,5 +1,18 @@
 
-<h1> {{ $modo }} Proveedor </h1>
+<h2> {{ $modo }} Proveedor </h2>
+
+
+@if(count($errors)>0)
+<div class="alert alert-danger" role="alert">
+ <ul>   
+    @foreach($errors->all() as $error)
+      <li>{{ $error }}</li>
+    @endforeach
+</ul>
+</div>
+
+@endif
+
 <label for="nitproveedor"> Nit Proveedor</label>
 <input type="number" name="nitproveedor" value="{{ isset($proveedor->nitproveedor)?$proveedor->nitproveedor:'' }}" id="nitproveedor">
 <br>

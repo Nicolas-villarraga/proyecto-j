@@ -1,9 +1,19 @@
-mostrar la lista de productos :)
+<h2>lista de Productos</h2>
+
+@extends('layouts.app')
+@section('content')
+<div class="container">
 
 
+
+<div class="alert alert-success alert-dismissible" role="alert">
 @if(Session::has('mensaje'))
 {{ Session::get('mensaje') }}
 @endif
+<button type="button" class="close" data-dismiss="alert" aria-label="close">
+    <span aria-hidden="true">&times;</span>
+</button>
+</div>
 
 <a href="{{ url('productos/create') }}"> Registrar nuevo Producto </a>
 
@@ -60,3 +70,5 @@ mostrar la lista de productos :)
     </tbody>
 
 </table>
+</div>
+@endsection

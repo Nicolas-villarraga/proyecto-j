@@ -6,8 +6,7 @@
 <div class="container">
 
 <form action="{{url('/citas')}}" method="post" enctype="multipart/form-data">
-@csrf
-    
+@csrf    
 @include('citas.form',['modo'=>'Confirmar']);
 </form>
 </div>    

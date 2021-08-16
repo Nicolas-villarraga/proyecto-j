@@ -1,5 +1,17 @@
 
-<h1> {{ $modo }} Pedido </h1>
+<h2> {{ $modo }} Pedido </h2>
+
+
+@if(count($errors)>0)
+<div class="alert alert-danger" role="alert">
+ <ul>   
+    @foreach($errors->all() as $error)
+      <li>{{ $error }}</li>
+    @endforeach
+</ul>
+</div>
+@endif
+
 <label for="fecha"> Fecha Pedido</label>
 <input type="date" name="fecha" value="{{ isset($pedido->fecha)?$pedido->fecha:'' }}" id="fecha">
 <br>

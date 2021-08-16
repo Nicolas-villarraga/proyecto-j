@@ -1,4 +1,9 @@
-Formulario de edición de producto
+<h2>formulario de edicion Producto
+</h2>
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
 
 <form action="{{ url('/productos/'.$producto->id )}}" method="post" enctype="multipart/form-data">
 @csrf
@@ -7,4 +12,6 @@ Formulario de edición de producto
 @include('productos.form',['modo'=>'Editar']);
 
 </form>
+</div>    
+@endsection
 
