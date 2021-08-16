@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\storage;
 
 class ProductoController extends Controller
 {
@@ -44,18 +45,14 @@ class ProductoController extends Controller
 
         if($request->hasFile('fotoproducto')) {
             $datosProducto['fotoproducto']=$request->file('fotoproducto')->store('uploads','public');
+         }
         
         
-        }
-        
-        
-
-
-
-
         Producto::insert($datosProducto);
 
-        return response()->json($datosProducto);
+        //return response()->json($datosProducto);
+         return redirect('productos')->with('mensaje','Producto agregado con èxito');
+
     }
 
     /**
@@ -75,9 +72,11 @@ class ProductoController extends Controller
      * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function edit(Producto $producto)
+    public function edit($id)
     {
         //
+        $producto=Producto::findOrfail($id);
+        return view('productos.edit', compact('producto') );
     }
 
     /**
@@ -87,9 +86,23 @@ class ProductoController extends Controller
      * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Producto $producto)
+    public function update(Request $request, $id)
     {
         //
+        $datosProducto = request()->except(['_token','_method']); 
+
+        if($request->hasFile('fotoproducto')) {
+            $producto=Producto::findOrfail($id);
+             
+            Storage::delete('public/'.$producto->fotoproducto);
+
+            $datosProducto['fotoproducto']=$request->file('fotoproducto')->store('uploads','public');
+        }
+
+
+        Producto::where('id','=',$id)->update($datosProducto);
+        $producto=Producto::findOrfail($id);
+        return view('productos.edit', compact('producto') );
     }
 
     /**
@@ -101,7 +114,16 @@ class ProductoController extends Controller
     public function destroy($id)
     {
         //
-        Producto::destroy($id);
-        return redirect('productos');
+
+        $producto=Producto::findOrfail($id);
+
+        if(Storage::delete('public/'.$producto->fotoproducto)){
+            
+            Producto::destroy($id);    
+
+        }
+
+        
+        return redirect('productos')->with('mensaje','Producto borrado');
     }
 }

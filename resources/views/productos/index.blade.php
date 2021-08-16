@@ -1,4 +1,12 @@
 mostrar la lista de productos :)
+
+
+@if(Session::has('mensaje'))
+{{ Session::get('mensaje') }}
+@endif
+
+<a href="{{ url('productos/create') }}"> Registrar nuevo Producto </a>
+
 <table class="table table-light">
 
     <thead class="thead-light">
@@ -7,25 +15,34 @@ mostrar la lista de productos :)
             <th>foto producto</th>
             <th>Nombre producto</th>
             <th>descripcion producto</th>
-            <th>precio compra producto</th>
-            <th>precio venta producto</th>
+            <th>precio compra </th>
+            <th>precio venta </th>
             <th>cantidad producto</th>
             <th>acciones</th>
         </tr>
     </thead>
 
     <tbody>
-        @foreach( $productos as $producto ) 
+        @foreach( $productos as $producto )
             
         <tr>
-            <td>{{ $producto->idproducto }}</td>
-            <td>{{ $producto->fotoproducto }}</td>
+            <td>{{ $producto->id}}</td>
+
+            <td>
+            <img src="{{ asset('storage').'/'.$producto->fotoproducto}}" width="100" alt="">    
+            </td>
+
             <td>{{ $producto->nombreproducto }}</td>
             <td>{{ $producto->descripcionproducto }}</td>
-            <td>{{ $producto->preciocompraproducto }}</td>
-            <td>{{ $producto->precioventaproducto }}</td>
+            <td>{{ $producto->preciocompra }}</td>
+            <td>{{ $producto->precioventa }}</td>
             <td>{{ $producto->cantidadproducto }}</td>
-            <td>Editar | 
+            <td>
+              
+            <a href="{{ url('/productos/'.$producto->id.'/edit') }}">
+                Editar
+            </a>    
+             
             
             <form action="{{ url('/productos/'.$producto->id ) }}" method="post">
             @csrf 
