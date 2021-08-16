@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\TipodocumentoController;
+use App\Http\Controllers\ProveedorController;
+use App\Http\Controllers\PedidoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +32,9 @@ Route::resource('tipodocumentos',TipodocumentoController::class);
 Route::resource('rols',RolController::class);
 Route::resource('estados',EstadoController::class);
 Route::resource('acudientes',AcudienteController::class);
+Route::resource('productos',ProductoController::class);
+Route::resource('proveedores',ProveedorController::class);
+Route::resource('pedidos',PedidoController::class);
 
 
 
@@ -37,7 +42,9 @@ Route::resource('acudientes',AcudienteController::class);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::resource('productos', ProductoController::class);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 

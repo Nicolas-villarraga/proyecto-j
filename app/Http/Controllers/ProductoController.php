@@ -41,17 +41,17 @@ class ProductoController extends Controller
     {
         //
         //$datosProducto = request()->all(); 
-        $datosProducto = request()->except('_token'); 
+        $datosProducto = request()->except('_token');
 
-        if($request->hasFile('fotoproducto')) {
-            $datosProducto['fotoproducto']=$request->file('fotoproducto')->store('uploads','public');
-         }
-        
-        
+        if ($request->hasFile('fotoproducto')) {
+            $datosProducto['fotoproducto'] = $request->file('fotoproducto')->store('uploads', 'public');
+        }
+
+
         Producto::insert($datosProducto);
 
         //return response()->json($datosProducto);
-         return redirect('productos')->with('mensaje','Producto agregado con èxito');
+        return redirect('productos')->with('mensaje', 'Producto agregado con èxito');
 
     }
 

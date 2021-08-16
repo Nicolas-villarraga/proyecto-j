@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Proveedor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\storage;
 
 class ProveedorController extends Controller
 {
@@ -15,6 +16,8 @@ class ProveedorController extends Controller
     public function index()
     {
         //
+        $datos['proveedores']=proveedor::paginate(5);
+        return view('proveedores.index',$datos );
     }
 
     /**
@@ -25,6 +28,7 @@ class ProveedorController extends Controller
     public function create()
     {
         //
+        return view('proveedores.create');
     }
 
     /**
@@ -35,7 +39,15 @@ class ProveedorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         //
+        //$datosProveedor = request()->all(); 
+        $datosProveedor = request()->except('_token'); 
+        
+        Proveedor::insert($datosProveedor);
+
+        //return response()->json($datosProveedor);
+         return redirect('proveedores')->with('mensaje','Proveedor agregado con èxito');
+
     }
 
     /**
@@ -55,9 +67,11 @@ class ProveedorController extends Controller
      * @param  \App\Models\Proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function edit(Proveedor $proveedor)
+    public function edit($id)
     {
         //
+        $proveedor=Proveedor::findOrfail($id);
+        return view('proveedores.edit', compact('proveedor') );
     }
 
     /**
@@ -67,10 +81,18 @@ class ProveedorController extends Controller
      * @param  \App\Models\Proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Proveedor $proveedor)
+    public function update(Request $request, $id)
     {
         //
+        $datosProveedor = request()->except(['_token','_method']); 
+        Proveedor::where('id','=',$id)->update($datosProveedor);
+        $proveedor=Proveedor::findOrfail($id);
+        return view('Proveedores.edit', compact('proveedor') );
+       
     }
+
+
+    
 
     /**
      * Remove the specified resource from storage.
@@ -78,8 +100,12 @@ class ProveedorController extends Controller
      * @param  \App\Models\Proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Proveedor $proveedor)
+    public function destroy($id)
     {
         //
+            Proveedor::destroy($id);    
+            return redirect('proveedores')->with('mensaje','Proveedor borrado');
     }
+
+    
 }

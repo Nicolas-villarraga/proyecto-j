@@ -15,6 +15,8 @@ class PedidoController extends Controller
     public function index()
     {
         //
+        $datos['pedidos']=Pedido::paginate(5);
+        return view('pedidos.index',$datos );
     }
 
     /**
@@ -25,6 +27,7 @@ class PedidoController extends Controller
     public function create()
     {
         //
+        return view('pedidos.create');
     }
 
     /**
@@ -36,6 +39,12 @@ class PedidoController extends Controller
     public function store(Request $request)
     {
         //
+        $datosPedido = request()->except('_token'); 
+        
+        Pedido::insert($datosPedido);
+
+        //return response()->json($datosProveedor);
+         return redirect('pedidos')->with('mensaje','Pedido agregado con èxito');
     }
 
     /**
@@ -55,9 +64,11 @@ class PedidoController extends Controller
      * @param  \App\Models\Pedido  $pedido
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pedido $pedido)
+    public function edit(Pedido $id)
     {
         //
+        $pedido=Pedido::findOrfail($id);
+        return view('pedidos.edit', compact('pedido') );
     }
 
     /**
@@ -67,9 +78,14 @@ class PedidoController extends Controller
      * @param  \App\Models\Pedido  $pedido
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pedido $pedido)
+    public function update(Request $request, $id)
     {
         //
+        $datosPedido = request()->except(['_token','_method']); 
+        Pedido::where('id','=',$id)->update($datosPedido);
+        $pedido=Pedido::findOrfail($id);
+        return view('pedidos.edit', compact('pedido') );
+
     }
 
     /**
@@ -78,8 +94,10 @@ class PedidoController extends Controller
      * @param  \App\Models\Pedido  $pedido
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pedido $pedido)
+    public function destroy(Pedido $id)
     {
         //
+        Pedido::destroy($id);    
+        return redirect('pedidos')->with('mensaje','Pedido borrado');
     }
 }
