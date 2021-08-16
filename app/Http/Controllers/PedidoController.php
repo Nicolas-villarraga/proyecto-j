@@ -64,7 +64,7 @@ class PedidoController extends Controller
      * @param  \App\Models\Pedido  $pedido
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pedido $id)
+    public function edit($id)
     {
         //
         $pedido=Pedido::findOrfail($id);
@@ -94,7 +94,7 @@ class PedidoController extends Controller
      * @param  \App\Models\Pedido  $pedido
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pedido $id)
+    public function destroy($id)
     {
         //
         Pedido::destroy($id);    
