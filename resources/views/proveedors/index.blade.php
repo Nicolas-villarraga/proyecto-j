@@ -1,4 +1,4 @@
-<h2>lista de roles</h2>
+<h2>lista de proveedores</h2>
 
 @extends('layouts.app')
 @section('content')
@@ -15,33 +15,46 @@
     </button>
 </div>
 
-<a href="{{url('rols/create')}}">Nuevo rol</a>
+<a href="{{url('proveedors/create')}}">Nuevo proveedor</a>
 
 <table class="table table-dark">
     <thead class="thead-dark">
         <tr>
             <th>ID</th>
-            <th>Nombre del rol</th>
+            <th>NIT</th>
+            <th>Direccion</th>
+            <th>Telefono</th>
+            <th>Corrreo</th>
+            <th>Marca</th>
+            <th>Nombre</th>
             <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
-        @foreach ($rols as $rol)
+        @foreach ($proveedors as $proveedor)
         <tr>
-            <td>{{$rol->id}}</td>
-            <td>{{$rol->nombrerol}}</td>
+            <td>{{$proveedor->id}}</td>
+            <td>{{$proveedor->nitproveedor}}</td>
+            <td>{{$proveedor->direccionproveedor}}</td>
+            <td>{{$proveedor->telefonoproveedor}}</td>
+            <td>{{$proveedor->correoproveedor}}</td>
+            <td>{{$proveedor->marcaproveedor}}</td>
+            <td>{{$proveedor->nombreproveedor}}</td>
             <td>
                 
-                <a href="{{url('/rols/'.$rol->id.'/edit')}}">
+                <a href="{{url('/proveedors/'.$proveedor->id.'/edit')}}">
                     editar
                 </a>
                  | 
-                <form action="{{ url('/rols/'.$rol->id ) }}" method="post">
+                <form action="{{ url('/proveedors/'.$proveedor->id ) }}" method="post">
                 @csrf
                 @method('DELETE')
                 <input type="submit" onclick="return confirm('¿Deseas eleminar permanentemente?')" 
                 value="borrar">
                 </form>
+
+
+
             </td>
         </tr>
         @endforeach

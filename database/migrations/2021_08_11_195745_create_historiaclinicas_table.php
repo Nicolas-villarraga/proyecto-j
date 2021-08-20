@@ -15,8 +15,8 @@ class CreateHistoriaclinicasTable extends Migration
     {
         Schema::create('historiaclinicas', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('fechacreacionhistoria');
-            $table->longText('drescipciohistoriaclinica');
+            $table->date('fechacreacionhistoria');
+            $table->longText('descripcionhistoriaclinica');
             $table->timestamps();
         });
     }

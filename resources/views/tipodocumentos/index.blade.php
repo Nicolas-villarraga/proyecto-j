@@ -1,4 +1,4 @@
-<h2>lista de citas</h2>
+<h2>lista de Documentos</h2>
 
 @extends('layouts.app')
 @section('content')
@@ -15,7 +15,7 @@
     </button>
 </div>
 
-<a href="{{url('tipodocumentos/create')}}">Nueva cita</a>
+<a href="{{url('tipodocumentos/create')}}">Nuevo Documento</a>
 
 <table class="table table-dark">
     <thead class="thead-dark">

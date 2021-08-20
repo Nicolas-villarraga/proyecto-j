@@ -1,4 +1,4 @@
-<h2>lista de roles</h2>
+<h2>lista de especialidades</h2>
 
 @extends('layouts.app')
 @section('content')
@@ -15,33 +15,37 @@
     </button>
 </div>
 
-<a href="{{url('rols/create')}}">Nuevo rol</a>
+<a href="{{url('especialidads/create')}}">Nueva especialidad</a>
 
 <table class="table table-dark">
     <thead class="thead-dark">
         <tr>
             <th>ID</th>
-            <th>Nombre del rol</th>
+            <th>Nombre</th>
             <th>Acciones</th>
+
         </tr>
     </thead>
     <tbody>
-        @foreach ($rols as $rol)
+        @foreach ($especialidads as $especialidad)
         <tr>
-            <td>{{$rol->id}}</td>
-            <td>{{$rol->nombrerol}}</td>
+            <td>{{$especialidad->id}}</td>
+            <td>{{$especialidad->nombreespecialidad}}</td>
             <td>
                 
-                <a href="{{url('/rols/'.$rol->id.'/edit')}}">
+                <a href="{{url('/especialidads/'.$especialidad->id.'/edit')}}">
                     editar
                 </a>
                  | 
-                <form action="{{ url('/rols/'.$rol->id ) }}" method="post">
+                <form action="{{ url('/especialidads/'.$especialidad->id ) }}" method="post">
                 @csrf
                 @method('DELETE')
                 <input type="submit" onclick="return confirm('¿Deseas eleminar permanentemente?')" 
                 value="borrar">
                 </form>
+
+
+
             </td>
         </tr>
         @endforeach

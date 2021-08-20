@@ -15,6 +15,8 @@ class PedidoController extends Controller
     public function index()
     {
         //
+        $pedido['pedidos']=Pedido::paginate(5);
+        return view('pedidos.index',$pedido);
     }
 
     /**
@@ -25,6 +27,7 @@ class PedidoController extends Controller
     public function create()
     {
         //
+        return view('pedidos.create');
     }
 
     /**
@@ -36,6 +39,23 @@ class PedidoController extends Controller
     public function store(Request $request)
     {
         //
+        $campos=[
+            'fecha'=>'required|date|max:100',
+            'hora'=>'required',
+            'totalpedido'=>'required',
+            'observacionespedido'=>'required|string|max:100',  
+        ];
+
+        $mensaje=[
+            'required'=>'El  :attribute es requerido'
+        ];
+
+        $this->validate($request, $campos,$mensaje);
+
+
+        $pedido = request()->except('_token');
+        Pedido::insert($pedido);
+        return redirect('pedidos')->with('mensaje','Pedido creado con exito');
     }
 
     /**
@@ -55,9 +75,11 @@ class PedidoController extends Controller
      * @param  \App\Models\Pedido  $pedido
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pedido $pedido)
+    public function edit($id)
     {
         //
+        $pedido = Pedido::findOrFail($id);
+        return view('pedidos.edit',compact('pedido'));
     }
 
     /**
@@ -67,9 +89,28 @@ class PedidoController extends Controller
      * @param  \App\Models\Pedido  $pedido
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pedido $pedido)
+    public function update(Request $request,$id)
     {
         //
+        $campos=[
+            'fecha'=>'required|date|max:100',
+            'hora'=>'required',
+            'totalpedido'=>'required',
+            'observacionespedido'=>'required|string|max:100',    
+        ];
+
+        $mensaje=[
+            'required'=>'El  :attribute es requerido'
+        ];
+
+        $this->validate($request, $campos,$mensaje);
+
+        $pedido = request()->except(['_token','_method']);
+        Pedido::where('id','=',$id)->update($pedido);
+
+        $pedido = Pedido::findOrFail($id);
+        //return view('citas.edit',compact('cita'));
+        return redirect('pedidos')->with('mensaje','Pedido Modificado');
     }
 
     /**
@@ -78,8 +119,10 @@ class PedidoController extends Controller
      * @param  \App\Models\Pedido  $pedido
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pedido $pedido)
+    public function destroy($id)
     {
         //
+        Pedido::destroy($id);
+        return redirect('pedidos')->with('mensaje','Pedido cancelado');
     }
 }

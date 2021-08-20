@@ -15,6 +15,8 @@ class HistoriaclinicaController extends Controller
     public function index()
     {
         //
+        $historiaclinica['historiaclinicas']=Historiaclinica::paginate(5);
+        return view('historiaclinicas.index',$historiaclinica);
     }
 
     /**
@@ -25,6 +27,7 @@ class HistoriaclinicaController extends Controller
     public function create()
     {
         //
+        return view('historiaclinicas.create');
     }
 
     /**
@@ -36,6 +39,22 @@ class HistoriaclinicaController extends Controller
     public function store(Request $request)
     {
         //
+        $campos=[
+            'fechacreacionhistoria'=>'required|date|max:100',
+            'descripcionhistoriaclinica'=>'required|string',
+        ];
+
+        $mensaje=[
+            'required'=>'El  :attribute es requerido'
+        ];
+
+        $this->validate($request, $campos,$mensaje);
+
+
+        $historiaclinica = request()->except('_token');
+        Historiaclinica::insert($historiaclinica);
+
+        return redirect('historiaclinicas')->with('mensaje','Historia creada con exito');
     }
 
     /**
@@ -55,9 +74,11 @@ class HistoriaclinicaController extends Controller
      * @param  \App\Models\Historiaclinica  $historiaclinica
      * @return \Illuminate\Http\Response
      */
-    public function edit(Historiaclinica $historiaclinica)
+    public function edit($id)
     {
         //
+        $historiaclinica = Historiaclinica::findOrFail($id);
+        return view('historiaclinicas.edit',compact('historiaclinica'));
     }
 
     /**
@@ -67,9 +88,27 @@ class HistoriaclinicaController extends Controller
      * @param  \App\Models\Historiaclinica  $historiaclinica
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Historiaclinica $historiaclinica)
+    public function update(Request $request, $id)
     {
         //
+        $campos=[
+            'fechacreacionhistoria'=>'required|date',
+            'descripcionhistoriaclinica'=>'required|string',
+
+
+        ];
+
+        $mensaje=[
+            'required'=>'El  :attribute es requerido'
+        ];
+
+        $this->validate($request, $campos,$mensaje);
+
+        $historiaclinica = request()->except(['_token','_method']);
+        Historiaclinica::where('id','=',$id)->update($historiaclinica);
+
+        $historiaclinica = Historiaclinica::findOrFail($id);
+        return redirect('historiaclinicas')->with('mensaje','Historia Modificada');
     }
 
     /**
@@ -78,8 +117,10 @@ class HistoriaclinicaController extends Controller
      * @param  \App\Models\Historiaclinica  $historiaclinica
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Historiaclinica $historiaclinica)
+    public function destroy($id)
     {
         //
+        Historiaclinica::destroy($id);
+        return redirect('historiaclinicas')->with('mensaje','Historia eliminada');
     }
 }

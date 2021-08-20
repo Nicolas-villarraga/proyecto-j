@@ -15,8 +15,8 @@ class ProductoController extends Controller
     public function index()
     {
         //
-        $datos['productos']=producto::paginate(5);
-        return view('productos.index',$datos );
+        $producto['productos']=Producto::paginate(5);
+        return view('productos.index',$producto);
     }
 
     /**
@@ -39,23 +39,28 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         //
-        //$datosProducto = request()->all(); 
-        $datosProducto = request()->except('_token'); 
+        $campos=[
+            'nombreproducto'=>'required|string|max:100',
+            'descripcionproducto'=>'required|string|max:50',
+            'preciocompra'=>'required',
+            'precioventa'=>'required',
+            'cantidadproducto'=>'required',  
+        ];
 
-        if($request->hasFile('fotoproducto')) {
-            $datosProducto['fotoproducto']=$request->file('fotoproducto')->store('uploads','public');
+        $mensaje=[
+            'required'=>'El  :attribute es requerido'
+        ];
+
+        $this->validate($request, $campos,$mensaje);
+
+
+        $producto = request()->except('_token');
+        Producto::insert($producto);
+        return redirect('productos')->with('mensaje','producto creado con exito');
         
         
-        }
-        
-        
+         
 
-
-
-
-        Producto::insert($datosProducto);
-
-        return response()->json($datosProducto);
     }
 
     /**
@@ -75,9 +80,11 @@ class ProductoController extends Controller
      * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function edit(Producto $producto)
+    public function edit($id)
     {
         //
+        $producto = Producto::findOrFail($id);
+        return view('productos.edit',compact('producto'));
     }
 
     /**
@@ -87,9 +94,29 @@ class ProductoController extends Controller
      * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Producto $producto)
+    public function update(Request $request,$id)
     {
         //
+        $campos=[
+            'nombreproducto'=>'required|string|max:100',
+            'descripcionproducto'=>'required|string|max:50',
+            'preciocompra'=>'required',
+            'precioventa'=>'required',
+            'cantidadproducto'=>'required', 
+        ];
+
+        $mensaje=[
+            'required'=>'El  :attribute es requerido'
+        ];
+
+        $this->validate($request, $campos,$mensaje);
+
+        $producto = request()->except(['_token','_method']);
+        Producto::where('id','=',$id)->update($producto);
+
+        $producto = Producto::findOrFail($id);
+        return redirect('productos')->with('mensaje','Producto Modificado');
+
     }
 
     /**
@@ -102,6 +129,6 @@ class ProductoController extends Controller
     {
         //
         Producto::destroy($id);
-        return redirect('productos');
+        return redirect('productos')->with('mensaje','producto eleminado');
     }
 }

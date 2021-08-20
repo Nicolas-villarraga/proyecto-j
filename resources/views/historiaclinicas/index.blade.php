@@ -1,4 +1,4 @@
-<h2>lista de citas</h2>
+<h2>Historia</h2>
 
 @extends('layouts.app')
 @section('content')
@@ -15,36 +15,30 @@
     </button>
 </div>
 
-<a href="{{url('acudientes/create')}}">Nueva cita</a>
+<a href="{{url('historiaclinicas/create')}}">Nueva Historia</a>
 
 <table class="table table-dark">
     <thead class="thead-dark">
         <tr>
             <th>ID</th>
-            <th>Acudiente</th>
-            <th>Tipo Ddocumento</th>
-            <th>Documento </th>
-            <th>Parentesco</th>
-            <th>telefono</th>
+            <th>Fecha</th>
+            <th>Descripcion</th>
             <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
-        @foreach ($acudientes as $acudiente)
+        @foreach ($historiaclinicas as $historiaclinica)
         <tr>
-            <td>{{$acudiente->id}}</td>
-            <td>{{$acudiente->nombreacudiente}}</td>
-            <td>{{$acudiente->tipodocumentopaciente}}</td>
-            <td>{{$acudiente->documentoacudiente}}</td>
-            <td>{{$acudiente->parentescoacudiente}}</td>
-            <td>{{$acudiente->telefonoacudiente}}</td>
+            <td>{{$historiaclinica->id}}</td>
+            <td>{{$historiaclinica->fechacreacionhistoria}}</td>
+            <td>{{$historiaclinica->descripcionhistoriaclinica}}</td>
             <td>
                 
-                <a href="{{url('/acudientes/'.$acudiente->id.'/edit')}}">
+                <a href="{{url('/historiaclinicas/'.$historiaclinica->id.'/edit')}}">
                     editar
                 </a>
                  | 
-                <form action="{{ url('/acudientes/'.$acudiente->id ) }}" method="post">
+                <form action="{{ url('/historiaclinicas/'.$historiaclinica->id ) }}" method="post">
                 @csrf
                 @method('DELETE')
                 <input type="submit" onclick="return confirm('¿Deseas eleminar permanentemente?')" 

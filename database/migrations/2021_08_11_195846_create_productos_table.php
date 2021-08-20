@@ -20,7 +20,6 @@ class CreateProductosTable extends Migration
             $table->double('preciocompra');
             $table->double('precioventa');
             $table->double('cantidadproducto');
-            $table->string('fotoproducto');
             $table->timestamps();
         });
     }

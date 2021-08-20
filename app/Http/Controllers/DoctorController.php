@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Doctor;
 use Illuminate\Http\Request;
+use PhpParser\Comment\Doc;
 
 class DoctorController extends Controller
 {
@@ -15,6 +16,8 @@ class DoctorController extends Controller
     public function index()
     {
         //
+        $doctor['doctors']=Doctor::paginate(5);
+        return view('doctors.index',$doctor);
     }
 
     /**
@@ -25,6 +28,7 @@ class DoctorController extends Controller
     public function create()
     {
         //
+        return view('doctors.create');
     }
 
     /**
@@ -36,6 +40,24 @@ class DoctorController extends Controller
     public function store(Request $request)
     {
         //
+        $campos=[
+            'nombredoctor'=>'required|string|max:100',
+            'apellidodoctor'=>'required|string|max:50',
+            'especialidad'=>'required|string|max:50',  
+        ];
+
+        $mensaje=[
+            'required'=>'El  :attribute es requerido'
+        ];
+
+        $this->validate($request, $campos,$mensaje);
+
+
+        $doctor = request()->except('_token');
+        Doctor::insert($doctor);
+        //return response()->json($cita);
+
+        return redirect('doctors')->with('mensaje','Doctor creado con exito'); 
     }
 
     /**
@@ -55,9 +77,11 @@ class DoctorController extends Controller
      * @param  \App\Models\Doctor  $doctor
      * @return \Illuminate\Http\Response
      */
-    public function edit(Doctor $doctor)
+    public function edit($id)
     {
         //
+        $doctor = Doctor::findOrFail($id);
+        return view('doctors.edit',compact('doctor'));
     }
 
     /**
@@ -67,9 +91,27 @@ class DoctorController extends Controller
      * @param  \App\Models\Doctor  $doctor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Doctor $doctor)
+    public function update(Request $request, $id)
     {
         //
+        $campos=[
+            
+            'nombredoctor'=>'required|string|max:100',
+            'apellidodoctor'=>'required|string|max:50',
+            'especialidad'=>'required|string|max:50', 
+        ];
+
+        $mensaje=[
+            'required'=>'El  :attribute es requerido'
+        ];
+
+        $this->validate($request, $campos,$mensaje);
+
+        $doctor = request()->except(['_token','_method']);
+        Doctor::where('id','=',$id)->update($doctor);
+
+        $doctor = Doctor::findOrFail($id);
+        return redirect('doctors')->with('mensaje','Doctor Modificado');
     }
 
     /**
@@ -78,8 +120,10 @@ class DoctorController extends Controller
      * @param  \App\Models\Doctor  $doctor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Doctor $doctor)
+    public function destroy($id)
     {
         //
+        Doctor::destroy($id);
+        return redirect('doctors')->with('mensaje','Doctor Eliminado');
     }
 }

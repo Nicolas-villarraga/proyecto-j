@@ -15,7 +15,7 @@
     </button>
 </div>
 
-<a href="{{url('pacientes/create')}}">Nueva cita</a>
+<a href="{{url('pacientes/create')}}">Nuevo paciente</a>
 
 <table class="table table-dark">
     <thead class="thead-dark">

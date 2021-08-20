@@ -15,6 +15,8 @@ class ProveedorController extends Controller
     public function index()
     {
         //
+        $proveedor['proveedors']=Proveedor::paginate(5);
+        return view('proveedors.index',$proveedor);
     }
 
     /**
@@ -25,6 +27,7 @@ class ProveedorController extends Controller
     public function create()
     {
         //
+        return view('proveedors.create');
     }
 
     /**
@@ -36,6 +39,26 @@ class ProveedorController extends Controller
     public function store(Request $request)
     {
         //
+        $campos=[
+            'nitproveedor'=>'required',
+            'direccionproveedor'=>'required',
+            'telefonoproveedor'=>'required',
+            'correoproveedor'=>'required|string|max:100',
+            'marcaproveedor'=>'required|string|max:100',
+            'nombreproveedor'=>'required|string|max:100',
+
+        ];
+
+        $mensaje=[
+            'required'=>'El  :attribute es requerido'
+        ];
+
+        $this->validate($request, $campos,$mensaje);
+
+
+        $proveedor = request()->except('_token');
+        Proveedor::insert($proveedor);
+        return redirect('proveedors')->with('mensaje','proveedor creado con exito');
     }
 
     /**
@@ -55,9 +78,11 @@ class ProveedorController extends Controller
      * @param  \App\Models\Proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function edit(Proveedor $proveedor)
+    public function edit($id)
     {
         //
+        $proveedor = Proveedor::findOrFail($id);
+        return view('proveedors.edit',compact('proveedor'));
     }
 
     /**
@@ -67,9 +92,29 @@ class ProveedorController extends Controller
      * @param  \App\Models\Proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Proveedor $proveedor)
+    public function update(Request $request, $id)
     {
         //
+        $campos=[
+            'nitproveedor'=>'required',
+            'direccionproveedor'=>'required',
+            'telefonoproveedor'=>'required',
+            'correoproveedor'=>'required|string|max:100',
+            'marcaproveedor'=>'required|string|max:100',
+            'nombreproveedor'=>'required|string|max:100',  
+        ];
+
+        $mensaje=[
+            'required'=>'El  :attribute es requerido'
+        ];
+
+        $this->validate($request, $campos,$mensaje);
+
+        $proveedor = request()->except(['_token','_method']);
+        Proveedor::where('id','=',$id)->update($proveedor);
+
+        $proveedor = Proveedor::findOrFail($id);
+        return redirect('proveedors')->with('mensaje','Proveedor Modificado');
     }
 
     /**
@@ -78,8 +123,10 @@ class ProveedorController extends Controller
      * @param  \App\Models\Proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Proveedor $proveedor)
+    public function destroy($id)
     {
         //
+        Proveedor::destroy($id);
+        return redirect('proveedors')->with('mensaje','proveedor eliminado');
     }
 }

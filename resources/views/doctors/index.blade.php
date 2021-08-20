@@ -1,4 +1,4 @@
-<h2>lista de roles</h2>
+<h2>lista de Doctores</h2>
 
 @extends('layouts.app')
 @section('content')
@@ -15,33 +15,41 @@
     </button>
 </div>
 
-<a href="{{url('rols/create')}}">Nuevo rol</a>
+<a href="{{url('doctors/create')}}">Nuevo Doctor</a>
 
 <table class="table table-dark">
     <thead class="thead-dark">
         <tr>
             <th>ID</th>
-            <th>Nombre del rol</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Especialidad</th>
             <th>Acciones</th>
+
         </tr>
     </thead>
     <tbody>
-        @foreach ($rols as $rol)
+        @foreach ($doctors as $doctor)
         <tr>
-            <td>{{$rol->id}}</td>
-            <td>{{$rol->nombrerol}}</td>
+            <td>{{$doctor->id}}</td>
+            <td>{{$doctor->nombredoctor}}</td>
+            <td>{{$doctor->apellidodoctor}}</td>
+            <td>{{$doctor->especialidad}}</td>
             <td>
                 
-                <a href="{{url('/rols/'.$rol->id.'/edit')}}">
+                <a href="{{url('/doctors/'.$doctor->id.'/edit')}}">
                     editar
                 </a>
                  | 
-                <form action="{{ url('/rols/'.$rol->id ) }}" method="post">
+                <form action="{{ url('/doctors/'.$doctor->id ) }}" method="post">
                 @csrf
                 @method('DELETE')
                 <input type="submit" onclick="return confirm('¿Deseas eleminar permanentemente?')" 
                 value="borrar">
                 </form>
+
+
+
             </td>
         </tr>
         @endforeach

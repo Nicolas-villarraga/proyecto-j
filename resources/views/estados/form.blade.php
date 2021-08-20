@@ -22,4 +22,4 @@
 <br>
 <input type="submit" value="{{$modo}}">
 
-<a href="{{url('estado/')}}">Volver</a>
+<a href="{{url('estados/')}}">Volver</a>

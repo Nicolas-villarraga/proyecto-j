@@ -17,7 +17,7 @@
 
 @endif
 
-<label for=especialidad">Especialidad</label>
+<label for="especialidad">Especialidad</label>
 <input type="text" name="especialidad" value="{{ isset($cita->especialidad)?$cita->especialidad:old('especialidad')}}" id="especialidad">
 <br>
 <label for="doctor">Doctor</label>

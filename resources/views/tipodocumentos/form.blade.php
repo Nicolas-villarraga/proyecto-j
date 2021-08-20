@@ -1,5 +1,5 @@
 
-<h2>{{$modo}} Cita</h2>
+<h2>{{$modo}} Documento</h2>
 
 
 @if(count($errors)>0)

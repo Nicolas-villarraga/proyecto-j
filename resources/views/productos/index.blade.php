@@ -1,45 +1,63 @@
-mostrar la lista de productos :)
-<table class="table table-light">
+<h2>lista de productos</h2>
 
-    <thead class="thead-light">
+@extends('layouts.app')
+@section('content')
+<div class="container">
+
+
+
+<div class="alert alert-success alert-dismissible" role="alert">
+    @if(Session::has('mensaje'))
+    {{Session::get('mensaje')}}
+    @endif
+    <button type="button" class="close" data-dismiss="alert" aria-label="close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<a href="{{url('productos/create')}}">Nuevo producto</a>
+
+<table class="table table-dark">
+    <thead class="thead-dark">
         <tr>
-            <th>id producto</th>
-            <th>foto producto</th>
-            <th>Nombre producto</th>
-            <th>descripcion producto</th>
-            <th>precio compra producto</th>
-            <th>precio venta producto</th>
-            <th>cantidad producto</th>
-            <th>acciones</th>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Precio Inicial</th>
+            <th>Precio Final</th>
+            <th>Cantidad</th>
+            <th>Acciones</th>
         </tr>
     </thead>
-
     <tbody>
-        @foreach( $productos as $producto ) 
-            
+        @foreach ($productos as $producto)
         <tr>
-            <td>{{ $producto->idproducto }}</td>
-            <td>{{ $producto->fotoproducto }}</td>
-            <td>{{ $producto->nombreproducto }}</td>
-            <td>{{ $producto->descripcionproducto }}</td>
-            <td>{{ $producto->preciocompraproducto }}</td>
-            <td>{{ $producto->precioventaproducto }}</td>
-            <td>{{ $producto->cantidadproducto }}</td>
-            <td>Editar | 
-            
-            <form action="{{ url('/productos/'.$producto->id ) }}" method="post">
-            @csrf 
-            {{ method_field ('DELETE') }}
-            <input type="submit" onclick="return confirm('¿quiere borrar producto?')" 
-             value="Borrar">   
-            
-            </form>
-            
-            
-            
+            <td>{{$producto->id}}</td>
+            <td>{{$producto->nombreproducto}}</td>
+            <td>{{$producto->descripcionproducto}}</td>
+            <td>{{$producto->preciocompra}}</td>
+            <td>{{$producto->precioventa}}</td>
+            <td>{{$producto->cantidadproducto}}</td>
+            <td>
+                
+                <a href="{{url('/productos/'.$producto->id.'/edit')}}">
+                    editar
+                </a>
+                 | 
+                <form action="{{ url('/productos/'.$producto->id ) }}" method="post">
+                @csrf
+                @method('DELETE')
+                <input type="submit" onclick="return confirm('¿Deseas eleminar permanentemente?')" 
+                value="borrar">
+                </form>
+
+
+
             </td>
         </tr>
         @endforeach
     </tbody>
 
 </table>
+</div>
+@endsection

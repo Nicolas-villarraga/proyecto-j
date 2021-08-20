@@ -15,6 +15,8 @@ class EspecialidadController extends Controller
     public function index()
     {
         //
+        $especialidad['especialidads']=Especialidad::paginate(5);
+        return view('especialidads.index',$especialidad);
     }
 
     /**
@@ -25,6 +27,7 @@ class EspecialidadController extends Controller
     public function create()
     {
         //
+        return view('especialidads.create');
     }
 
     /**
@@ -36,6 +39,22 @@ class EspecialidadController extends Controller
     public function store(Request $request)
     {
         //
+        $campos=[
+            'nombreespecialidad'=>'required|string|max:100',
+        ];
+
+        $mensaje=[
+            'required'=>'El  :attribute es requerido'
+        ];
+
+        $this->validate($request, $campos,$mensaje);
+
+
+        $especialidad = request()->except('_token');
+        Especialidad::insert($especialidad);
+        //return response()->json($cita);
+
+        return redirect('especialidads')->with('mensaje','Especialidad creada con exito');
     }
 
     /**
@@ -55,9 +74,11 @@ class EspecialidadController extends Controller
      * @param  \App\Models\Especialidad  $especialidad
      * @return \Illuminate\Http\Response
      */
-    public function edit(Especialidad $especialidad)
+    public function edit($id)
     {
         //
+        $especialidad = Especialidad::findOrFail($id);
+        return view('especialidads.edit',compact('especialidad'));
     }
 
     /**
@@ -67,9 +88,25 @@ class EspecialidadController extends Controller
      * @param  \App\Models\Especialidad  $especialidad
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Especialidad $especialidad)
+    public function update(Request $request, $id)
     {
         //
+        $campos=[
+            'nombreespecialidad'=>'required|string|max:100',
+        ];
+
+        $mensaje=[
+            'required'=>'El  :attribute es requerido'
+        ];
+
+        $this->validate($request, $campos,$mensaje);
+
+        $especialidad = request()->except(['_token','_method']);
+        Especialidad::where('id','=',$id)->update($especialidad);
+
+        $especialidad = Especialidad::findOrFail($id);
+        return redirect('especialidads')->with('mensaje','Especialidad Modificada');
+
     }
 
     /**
@@ -78,8 +115,10 @@ class EspecialidadController extends Controller
      * @param  \App\Models\Especialidad  $especialidad
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Especialidad $especialidad)
+    public function destroy($id)
     {
         //
+        Especialidad::destroy($id);
+        return redirect('especialidads')->with('mensaje','Especialidad Eliminada');
     }
 }
