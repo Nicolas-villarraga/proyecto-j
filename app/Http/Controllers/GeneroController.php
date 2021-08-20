@@ -15,6 +15,8 @@ class GeneroController extends Controller
     public function index()
     {
         //
+        $genero['generos']=Genero::paginate(5);
+        return view('generos.index',$genero);
     }
 
     /**
@@ -25,6 +27,7 @@ class GeneroController extends Controller
     public function create()
     {
         //
+        return view('generos.create');
     }
 
     /**
@@ -36,6 +39,22 @@ class GeneroController extends Controller
     public function store(Request $request)
     {
         //
+        $campos=[
+            'nombregenero'=>'required|string|max:100',
+        ];
+
+        $mensaje=[
+            'required'=>'El  :attribute es requerido'
+        ];
+
+        $this->validate($request, $campos,$mensaje);
+
+
+        $genero = request()->except('_token');
+        Genero::insert($genero);
+        //
+
+        return redirect('generos')->with('mensaje','Genero creado con exito');
     }
 
     /**
@@ -55,9 +74,11 @@ class GeneroController extends Controller
      * @param  \App\Models\Genero  $genero
      * @return \Illuminate\Http\Response
      */
-    public function edit(Genero $genero)
+    public function edit($id)
     {
         //
+        $genero = Genero::findOrFail($id);
+        return view('generos.edit',compact('genero'));
     }
 
     /**
@@ -67,9 +88,25 @@ class GeneroController extends Controller
      * @param  \App\Models\Genero  $genero
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Genero $genero)
+    public function update(Request $request,$id)
     {
         //
+        $campos=[
+            'nombregenero'=>'required|string|max:100',  
+        ];
+
+        $mensaje=[
+            'required'=>'El  :attribute es requerido'
+        ];
+
+        $this->validate($request, $campos,$mensaje);
+
+        $genero = request()->except(['_token','_method']);
+        Genero::where('id','=',$id)->update($genero);
+
+        $genero = Genero::findOrFail($id);
+        //return view('citas.edit',compact('cita'));
+        return redirect('generos')->with('mensaje','Genero Modificado');
     }
 
     /**
@@ -78,8 +115,10 @@ class GeneroController extends Controller
      * @param  \App\Models\Genero  $genero
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Genero $genero)
+    public function destroy($id)
     {
         //
+        Genero::destroy($id);
+        return redirect('generos')->with('mensaje','Genero cancelada');
     }
 }

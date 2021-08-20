@@ -15,6 +15,8 @@ class PacienteController extends Controller
     public function index()
     {
         //
+        $paciente['pacientes']=Paciente::paginate(5);
+        return view('pacientes.index',$paciente);
     }
 
     /**
@@ -25,6 +27,7 @@ class PacienteController extends Controller
     public function create()
     {
         //
+        return view('pacientes.create');
     }
 
     /**
@@ -36,6 +39,29 @@ class PacienteController extends Controller
     public function store(Request $request)
     {
         //
+        $campos=[
+            'nombrepaciente'=>'required|string|max:100',
+            'apellidopaciente'=>'required|string|max:100',
+            'tipodocumento'=>'required|string|max:100',
+            'documentopaciente'=>'required|string|max:100',
+            'correopaciente'=>'required|string|max:100',
+            'telefonopaciente'=>'required|string|max:100',
+            'acudientepaciente'=>'required|string|max:100',
+            'estado'=>'required|string|max:100',
+        ];
+
+        $mensaje=[
+            'required'=>'El  :attribute es requerido'
+        ];
+
+        $this->validate($request, $campos,$mensaje);
+
+
+        $paciente = request()->except('_token');
+        Paciente::insert($paciente);
+        //return response()->json($cita);
+
+        return redirect('pacientes')->with('mensaje','Paciente creado con exito'); 
     }
 
     /**
@@ -55,9 +81,11 @@ class PacienteController extends Controller
      * @param  \App\Models\Paciente  $paciente
      * @return \Illuminate\Http\Response
      */
-    public function edit(Paciente $paciente)
+    public function edit($id)
     {
         //
+        $paciente = Paciente::findOrFail($id);
+        return view('pacientes.edit',compact('paciente'));
     }
 
     /**
@@ -67,9 +95,32 @@ class PacienteController extends Controller
      * @param  \App\Models\Paciente  $paciente
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Paciente $paciente)
+    public function update(Request $request, $id)
     {
         //
+        $campos=[
+            'nombrepaciente'=>'required|string|max:100',
+            'apellidopaciente'=>'required|string|max:100',
+            'tipodocumento'=>'required|string|max:100',
+            'documentopaciente'=>'required|string|max:100',
+            'correopaciente'=>'required|string|max:100',
+            'telefonopaciente'=>'required|string|max:100',
+            'acudientepaciente'=>'required|string|max:100',
+            'estado'=>'required|string|max:100', 
+        ];
+
+        $mensaje=[
+            'required'=>'El  :attribute es requerido'
+        ];
+
+        $this->validate($request, $campos,$mensaje);
+
+        $paciente = request()->except(['_token','_method']);
+        Paciente::where('id','=',$id)->update($paciente);
+
+        $paciente = Paciente::findOrFail($id);
+        //return view('citas.edit',compact('cita'));
+        return redirect('pacientes')->with('mensaje','paciente Modificado');
     }
 
     /**
@@ -78,8 +129,10 @@ class PacienteController extends Controller
      * @param  \App\Models\Paciente  $paciente
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Paciente $paciente)
+    public function destroy($id)
     {
         //
+        Paciente::destroy($id);
+        return redirect('pacientes')->with('mensaje','paciente eliminado');
     }
 }

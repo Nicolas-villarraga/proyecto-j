@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 
-class UsuarioController extends Controller;
+class UsuarioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,6 +15,8 @@ class UsuarioController extends Controller;
     public function index()
     {
         //
+        $usuario['usuarios']=Usuario::paginate(5);
+        return view('usuarios.index',$usuario);
     }
 
     /**
@@ -25,6 +27,7 @@ class UsuarioController extends Controller;
     public function create()
     {
         //
+        return view('usuarios.create');
     }
 
     /**
@@ -36,6 +39,28 @@ class UsuarioController extends Controller;
     public function store(Request $request)
     {
         //
+        $campos=[
+            'nombreusuario'=>'required|string|max:100',
+            'apellidousuario'=>'required|string|max:100',
+            'tipodocumento'=>'required|string|max:100',
+            'documentousuario'=>'required|string|max:100',
+            'correousuario'=>'required|string|max:100',
+            'telefonousuario'=>'required|max:100',
+            'rolusuario'=>'required|string|max:100',
+            ];
+
+        $mensaje=[
+            'required'=>'El  :attribute es requerido'
+        ];
+
+        $this->validate($request, $campos,$mensaje);
+
+
+        $usuario = request()->except('_token');
+        Usuario::insert($usuario);
+        //return response()->json($cita);
+
+        return redirect('usuarios')->with('mensaje','Usuario creado con exito'); 
     }
 
     /**
@@ -55,9 +80,11 @@ class UsuarioController extends Controller;
      * @param  \App\Models\Usuario  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function edit(Usuario $usuario)
+    public function edit($id)
     {
         //
+        $usuario = Usuario::findOrFail($id);
+        return view('usuarios.edit',compact('usuario'));
     }
 
     /**
@@ -67,9 +94,31 @@ class UsuarioController extends Controller;
      * @param  \App\Models\Usuario  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Usuario $usuario)
+    public function update(Request $request,$id)
     {
         //
+        $campos=[
+            'nombreusuario'=>'required|string|max:100',
+            'apellidousuario'=>'required|string|max:100',
+            'tipodocumento'=>'required|string|max:100',
+            'documentousuario'=>'required|string|max:100',
+            'correousuario'=>'required|string|max:100',
+            'telefonousuario'=>'required|max:100',
+            'rolusuario'=>'required|string|max:100', 
+        ];
+
+        $mensaje=[
+            'required'=>'El  :attribute es requerido'
+        ];
+
+        $this->validate($request, $campos,$mensaje);
+
+        $usuario = request()->except(['_token','_method']);
+        Usuario::where('id','=',$id)->update($usuario);
+
+        $usuario = Usuario::findOrFail($id);
+        //return view('citas.edit',compact('cita'));
+        return redirect('usuarios')->with('mensaje','usuario Modificado');
     }
 
     /**
@@ -78,8 +127,10 @@ class UsuarioController extends Controller;
      * @param  \App\Models\Usuario  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Usuario $usuario)
+    public function destroy($id)
     {
         //
+        Usuario::destroy($id);
+        return redirect('usuarios')->with('mensaje','usuario cancelado');
     }
 }
