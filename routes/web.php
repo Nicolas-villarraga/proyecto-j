@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\EspecialidadController;
+use App\Http\Controllers\HistoriaclinicaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +19,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::resource('doctors', DoctorController::class);
+Route::resource('especialidads', EspecialidadController::class);
+Route::resource('historiaclinicas', HistoriaclinicaController::class);

@@ -15,6 +15,8 @@ class EspecialidadController extends Controller
     public function index()
     {
         //
+        $especialidad['especialidads']=Especialidad::paginate(5);
+        return view('especialiad.index',$especialiad);
     }
 
     /**
@@ -25,6 +27,7 @@ class EspecialidadController extends Controller
     public function create()
     {
         //
+        return view('especialidad.create');
     }
 
     /**
@@ -36,6 +39,26 @@ class EspecialidadController extends Controller
     public function store(Request $request)
     {
         //
+        $campos=[
+            'idespecialiad'=>'required|string|max:100',
+            'nombreespecialidad'=>'required|string|max:100',
+              
+        ];
+
+        $mensaje=[
+            'required'=>'El  :attribute es requerido'
+        ];
+
+        $this->validate($request, $campos,$mensaje);
+
+        $especialidad = request()->except('_token');
+        Especialidad::insert($especialidad);
+        //return response()->json($especialiad);
+
+        return redirect('especialidads')->with('mensaje','Especialidad creada con exito'); 
+
+        
+    }
     }
 
     /**
@@ -55,9 +78,11 @@ class EspecialidadController extends Controller
      * @param  \App\Models\Especialidad  $especialidad
      * @return \Illuminate\Http\Response
      */
-    public function edit(Especialidad $especialidad)
+    public function edit($id)
     {
         //
+        $especialiad = Especialiad::findOrFail($id);
+        return view('especialidads.edit',compact('especialidad'));
     }
 
     /**
@@ -67,9 +92,27 @@ class EspecialidadController extends Controller
      * @param  \App\Models\Especialidad  $especialidad
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Especialidad $especialidad)
+    public function update(Request $request, $id)
     {
         //
+        $campos=[
+            'idespecialiad'=>'required|string|max:100',
+            'nombreespecialidad'=>'required|string|max:100',
+           
+        ];
+        $mensaje=[
+            'required'=>'El  :attribute es requerido'
+        ];
+
+        $this->validate($request, $campos,$mensaje);
+
+        $especialidad = request()->except(['_token','_method']);
+        Especialidad::where('id','=',$id)->update($especialiad);
+
+        $especialidad = Especialidad::findOrFail($id);
+        //return view('especialidads.edit',compact('especialidad'));
+        return redirect('especialidads')->with('mensaje','Especialidad Modificada');
+
     }
 
     /**
@@ -78,8 +121,10 @@ class EspecialidadController extends Controller
      * @param  \App\Models\Especialidad  $especialidad
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Especialidad $especialidad)
+    public function destroy($id)
     {
-        //
+        //Especialidad::destroy($id);
+        return redirect('especialidads')->with('mensaje','Especialidad eliminada');
     }
 }
+?>
