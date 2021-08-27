@@ -54,7 +54,6 @@ class DetalleproductoController extends Controller
 
         $detalleproducto = request()->except('_token');
         Detalleproducto::insert($detalleproducto);
-        //return response()->json($cita);
 
         return redirect('detalleproductos')->with('mensaje','detalle creado con exito'); 
     }
@@ -110,7 +109,6 @@ class DetalleproductoController extends Controller
         Detalleproducto::where('id','=',$id)->update($detalleproducto);
 
         $detalleproducto = Detalleproducto::findOrFail($id);
-        //return view('citas.edit',compact('cita'));
         return redirect('detalleproductos')->with('mensaje','detalle Modificado');
     }
 

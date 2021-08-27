@@ -112,7 +112,7 @@ class ProductoController extends Controller
         $this->validate($request, $campos,$mensaje);
 
         $producto = request()->except(['_token','_method']);
-        Producto::where('id','=',$id)->update($producto);
+        Producto::where('id_Producto','=',$id)->update($producto);
 
         $producto = Producto::findOrFail($id);
         return redirect('productos')->with('mensaje','Producto Modificado');

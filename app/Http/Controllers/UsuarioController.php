@@ -40,13 +40,8 @@ class UsuarioController extends Controller
     {
         //
         $campos=[
-            'nombreusuario'=>'required|string|max:100',
-            'apellidousuario'=>'required|string|max:100',
-            'tipodocumento'=>'required|string|max:100',
-            'documentousuario'=>'required|string|max:100',
-            'correousuario'=>'required|string|max:100',
-            'telefonousuario'=>'required|max:100',
-            'rolusuario'=>'required|string|max:100',
+            'usuario'=>'required|string|max:100',
+            'contraseña'=>'required|string|max:100',
             ];
 
         $mensaje=[
@@ -58,8 +53,6 @@ class UsuarioController extends Controller
 
         $usuario = request()->except('_token');
         Usuario::insert($usuario);
-        //return response()->json($cita);
-
         return redirect('usuarios')->with('mensaje','Usuario creado con exito'); 
     }
 
@@ -98,13 +91,9 @@ class UsuarioController extends Controller
     {
         //
         $campos=[
-            'nombreusuario'=>'required|string|max:100',
-            'apellidousuario'=>'required|string|max:100',
-            'tipodocumento'=>'required|string|max:100',
-            'documentousuario'=>'required|string|max:100',
-            'correousuario'=>'required|string|max:100',
-            'telefonousuario'=>'required|max:100',
-            'rolusuario'=>'required|string|max:100', 
+            'usuario'=>'required|string|max:100',
+            'contraseña'=>'required|string|max:100',
+
         ];
 
         $mensaje=[
@@ -117,7 +106,6 @@ class UsuarioController extends Controller
         Usuario::where('id','=',$id)->update($usuario);
 
         $usuario = Usuario::findOrFail($id);
-        //return view('citas.edit',compact('cita'));
         return redirect('usuarios')->with('mensaje','usuario Modificado');
     }
 

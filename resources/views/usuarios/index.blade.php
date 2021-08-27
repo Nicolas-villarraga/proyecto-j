@@ -21,13 +21,8 @@
     <thead class="thead-dark">
         <tr>
             <th>ID</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>tipodocumento</th>
-            <th>Documento</th>
-            <th>Correo</th>
-            <th>Telefono</th>
-            <th>Rol</th>
+            <th>usuario</th>
+            <th>contraseña</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -35,13 +30,8 @@
         @foreach ($usuarios as $usuario)
         <tr>
             <td>{{$usuario->id}}</td>
-            <td>{{$usuario->nombreusuario}}</td>
-            <td>{{$usuario->apellidousuario}}</td>
-            <td>{{$usuario->tipodocumento}}</td>
-            <td>{{$usuario->documentousuario}}</td>
-            <td>{{$usuario->correousuario}}</td>
-            <td>{{$usuario->telefonousuario}}</td>
-            <td>{{$usuario->rolusuario}}</td>
+            <td>{{$usuario->usuario}}</td>
+            <td>{{$usuario->contraseña}}</td>
             
             <td>
                 

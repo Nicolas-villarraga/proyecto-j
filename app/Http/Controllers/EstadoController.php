@@ -52,7 +52,6 @@ class EstadoController extends Controller
 
         $estado = request()->except('_token');
         Estado::insert($estado);
-        //return response()->json($cita);
 
         return redirect('estados')->with('mensaje','Estado creado con exito');
     }
@@ -107,7 +106,6 @@ class EstadoController extends Controller
         Estado::where('id','=',$id)->update($estado);
 
         $estado = Estado::findOrFail($id);
-        //return view('citas.edit',compact('cita'));
         return redirect('estados')->with('mensaje','Estado Modificado');
     }
 
@@ -117,10 +115,10 @@ class EstadoController extends Controller
      * @param  \App\Models\Estado  $estado
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_Estado)
     {
         //
-        Estado::destroy($id);
+        Estado::destroy($id_Estado);
         return redirect('estados')->with('mensaje','Estado eliminado');
     }
 }

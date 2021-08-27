@@ -55,7 +55,6 @@ class DoctorController extends Controller
 
         $doctor = request()->except('_token');
         Doctor::insert($doctor);
-        //return response()->json($cita);
 
         return redirect('doctors')->with('mensaje','Doctor creado con exito'); 
     }

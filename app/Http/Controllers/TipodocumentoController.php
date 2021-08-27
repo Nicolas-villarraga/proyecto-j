@@ -15,7 +15,7 @@ class TipodocumentoController extends Controller
     public function index()
     {
         //
-        $tipodocumento['tipodocumentos']=Tipodocumento::paginate(3);
+        $tipodocumento['tipodocumentos']=Tipodocumento::paginate(8);
         return view('tipodocumentos.index',$tipodocumento);
     }
 
@@ -52,7 +52,6 @@ class TipodocumentoController extends Controller
 
         $tipodocumento = request()->except('_token');
         Tipodocumento::insert($tipodocumento);
-        //return response()->json($cita);
 
         return redirect('tipodocumentos')->with('mensaje','Documento creado con exito');
     }
@@ -106,7 +105,6 @@ class TipodocumentoController extends Controller
         Tipodocumento::where('id','=',$id)->update($tipodocumento);
 
         $tipodocumento = Tipodocumento::findOrFail($id);
-        //return view('tipodocumentos.edit',compact('tipodocumento'));
         return redirect('tipodocumentos')->with('mensaje','Documento Modificado');
     }
 

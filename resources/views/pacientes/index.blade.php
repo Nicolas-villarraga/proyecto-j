@@ -28,6 +28,7 @@
             <th>Correo</th>
             <th>Telefono</th>
             <th>Acudiente</th>
+            <th>Contraseña</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -37,19 +38,20 @@
             <td>{{$paciente->id}}</td>
             <td>{{$paciente->nombrepaciente}}</td>
             <td>{{$paciente->apellidopaciente}}</td>
-            <td>{{$paciente->tipodocumento}}</td>
+            <td>{{$paciente->id_Tipodocumento}}</td>
             <td>{{$paciente->documentopaciente}}</td>
             <td>{{$paciente->correopaciente}}</td>
             <td>{{$paciente->telefonopaciente}}</td>
             <td>{{$paciente->acudientepaciente}}</td>
-            <td>{{$paciente->estado}}</td>
+            <td>{{$paciente->contraseña}}</td>
+            <td>{{$paciente->id_Estado}}</td>
             <td>
                 
                 <a href="{{url('/pacientes/'.$paciente->id.'/edit')}}">
                     editar
                 </a>
                  | 
-                <form action="{{ url('/pacientes/'.$paciente->id ) }}" method="post">
+                <form action="{{ url('/pacientes/'.$paciente->id) }}" method="post">
                 @csrf
                 @method('DELETE')
                 <input type="submit" onclick="return confirm('¿Deseas eleminar permanentemente?')" 

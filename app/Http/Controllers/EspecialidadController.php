@@ -52,8 +52,7 @@ class EspecialidadController extends Controller
 
         $especialidad = request()->except('_token');
         Especialidad::insert($especialidad);
-        //return response()->json($cita);
-
+      
         return redirect('especialidads')->with('mensaje','Especialidad creada con exito');
     }
 
@@ -102,7 +101,7 @@ class EspecialidadController extends Controller
         $this->validate($request, $campos,$mensaje);
 
         $especialidad = request()->except(['_token','_method']);
-        Especialidad::where('id','=',$id)->update($especialidad);
+        Especialidad::where('id_Especialidad','=',$id)->update($especialidad);
 
         $especialidad = Especialidad::findOrFail($id);
         return redirect('especialidads')->with('mensaje','Especialidad Modificada');

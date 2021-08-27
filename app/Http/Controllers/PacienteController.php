@@ -59,7 +59,6 @@ class PacienteController extends Controller
 
         $paciente = request()->except('_token');
         Paciente::insert($paciente);
-        //return response()->json($cita);
 
         return redirect('pacientes')->with('mensaje','Paciente creado con exito'); 
     }
@@ -119,7 +118,6 @@ class PacienteController extends Controller
         Paciente::where('id','=',$id)->update($paciente);
 
         $paciente = Paciente::findOrFail($id);
-        //return view('citas.edit',compact('cita'));
         return redirect('pacientes')->with('mensaje','paciente Modificado');
     }
 

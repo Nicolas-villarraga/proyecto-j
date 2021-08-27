@@ -15,13 +15,20 @@ class CreateUsuariosTable extends Migration
     {
         Schema::create('usuarios', function (Blueprint $table) {
             $table->id();
-            $table->string('nombreusuario',75);
-            $table->string('apellidousuario',75);
-            $table->string('tipodocumento');
-            $table->double('documentousuario');
-            $table->string('correousuario');
-            $table->double('telefonousuario');
-            $table->string('rolusuario');
+            $table->string('usuario');
+            $table->string('contraseña');
+            $table->bigInteger('id_Paciente')->unsigned()->nullable();
+            $table->foreign('id_Paciente')->references('id')->on('pacientes');
+            $table->bigInteger('id_Estado')->unsigned()->nullable();
+            $table->foreign('id_Estado')->references('id')->on('estados');
+            $table->bigInteger('id_Genero')->unsigned()->nullable();
+            $table->foreign('id_Genero')->references('id')->on('generos');
+            $table->bigInteger('id_Tipodocumento')->unsigned()->nullable();
+            $table->foreign('id_Tipodocumento')->references('id')->on('tipodocumentos');
+            $table->bigInteger('id_Doctor')->unsigned()->nullable();
+            $table->foreign('id_Doctor')->references('id')->on('doctors');
+            $table->bigInteger('id_Rol')->unsigned()->nullable();
+            $table->foreign('id_Rol')->references('id')->on('rols');
             $table->timestamps();
         });
     }

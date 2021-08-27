@@ -109,7 +109,6 @@ class PedidoController extends Controller
         Pedido::where('id','=',$id)->update($pedido);
 
         $pedido = Pedido::findOrFail($id);
-        //return view('citas.edit',compact('cita'));
         return redirect('pedidos')->with('mensaje','Pedido Modificado');
     }
 

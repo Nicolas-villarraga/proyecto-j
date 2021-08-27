@@ -17,17 +17,17 @@
 
 @endif
 
-<label for="especialidad">Especialidad</label>
-<input type="text" name="especialidad" value="{{ isset($cita->especialidad)?$cita->especialidad:old('especialidad')}}" id="especialidad">
-<br>
-<label for="doctor">Doctor</label>
-<input type="text" name="doctor" value="{{ isset($cita->doctor)?$cita->doctor:old('doctor')}}" id="doctor">
+<label for="id_Doctor">Doctor</label>
+<input type="text" name="id_Doctor" value="{{ isset($cita->id_Doctor)?$cita->id_Doctor:old('id_Doctor')}}" id="id_Doctor">
 <br>
 <label for="fecha">Fecha</label>
 <input type="date" name="fecha" value="{{ isset($cita->fecha)?$cita->fecha:old('fecha')}}"id="fecha">
 <br>
 <label for="hora">Hora</label>
 <input type="time" name="hora" value="{{isset($cita->hora)?$cita->hora:old('hora')}}" id="hora">
+<br>
+<label for="id_Especialidad">Especialidad</label>
+<input type="text" name="id_Especialidad" value="{{ isset($cita->id_Especialidad)?$cita->id_Especialidad:old('id_Especialidad')}}" id="id_Especialidad">
 <br>
 <input type="submit" value="{{$modo}}">
 

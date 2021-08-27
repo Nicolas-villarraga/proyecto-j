@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Historiaclinica extends Model
 {
     use HasFactory;
+    protected $fillable =[
+        'fechacreacionhistoria',
+        'descripcionhistoriaclinica',
+        'id_Doctor',
+        'id_Paciente',
+    ];
 }

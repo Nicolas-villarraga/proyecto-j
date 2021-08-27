@@ -15,12 +15,14 @@ class CreateProveedorsTable extends Migration
     {
         Schema::create('proveedors', function (Blueprint $table) {
             $table->id();
-            $table->double('nitproveedor');
+            $table->string('nitproveedor');
             $table->string('direccionproveedor');
-            $table->double('telefonoproveedor');
+            $table->string('telefonoproveedor');
             $table->string('correoproveedor');
             $table->string('marcaproveedor');
             $table->string('nombreproveedor');
+            $table->bigInteger('id_producto')->unsigned()->nullable();
+            $table->foreign('id_Producto')->references('id')->on('productos');
             $table->timestamps();
         });
     }

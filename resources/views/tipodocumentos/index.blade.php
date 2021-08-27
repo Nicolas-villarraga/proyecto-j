@@ -36,7 +36,7 @@
                     editar
                 </a>
                  | 
-                <form action="{{ url('/tipodocumentos/'.$tipodocumento->id ) }}" method="post">
+                <form action="{{ url('/tipodocumentos/'.$tipodocumento->id ) }}"  method="post">
                 @csrf
                 @method('DELETE')
                 <input type="submit" onclick="return confirm('¿Deseas eleminar permanentemente?')" 

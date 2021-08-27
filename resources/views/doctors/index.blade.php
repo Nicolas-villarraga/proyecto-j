@@ -34,7 +34,7 @@
             <td>{{$doctor->id}}</td>
             <td>{{$doctor->nombredoctor}}</td>
             <td>{{$doctor->apellidodoctor}}</td>
-            <td>{{$doctor->especialidad}}</td>
+            <td>{{$doctor->id_Especialidad}}</td>
             <td>
                 
                 <a href="{{url('/doctors/'.$doctor->id.'/edit')}}">

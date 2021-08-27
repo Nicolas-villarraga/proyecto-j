@@ -15,9 +15,14 @@ class CreateDoctorsTable extends Migration
     {
         Schema::create('doctors', function (Blueprint $table) {
             $table->id();
-            $table->string('nombredoctor',75);
-            $table->string('apellidodoctor',75);
-            $table->text('especialidad',75);
+            $table->string('nombredoctor');
+            $table->string('apellidodoctor');
+            $table->bigInteger('id_Especialidad')->unsigned()->nullable();
+            $table->foreign('id_Especialidad')->references('id')->on('especialidads');
+            $table->bigInteger('id_Tipodocumento')->unsigned()->nullable();
+            $table->foreign('id_Tipodocumento')->references('id')->on('tipodocumentos');
+            $table->bigInteger('id_Genero')->unsigned()->nullable();
+            $table->foreign('id_Genero')->references('id')->on('generos');
             $table->timestamps();
         });
     }

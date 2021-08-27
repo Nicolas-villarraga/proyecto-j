@@ -23,8 +23,8 @@
 <label for="apellidodoctor">Apellidos</label>
 <input type="text" name="apellidodoctor" value="{{ isset($doctor->apellidodoctor)?$doctor->apellidodoctor:old('apellido')}}" id="apellidodoctor">
 <br>
-<label for="especialidad">Especialidad</label>
-<input type="select" name="especialidad" value="{{ isset($doctor->especialidad)?$doctor->especialidad:old('doctor')}}"id="especialidad">
+<label for="id_Especialidad">Especialidad</label>
+<input type="select" name="id_Especialidad" value="{{ isset($doctor->id_Especialidad)?$doctor->id_Especialidad:old('doctor')}}"id="id_Especialidad">
 <br>
 <input type="submit" value="{{$modo}}">
 

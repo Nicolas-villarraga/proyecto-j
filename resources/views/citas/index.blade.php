@@ -32,8 +32,8 @@
         @foreach ($citas as $cita)
         <tr>
             <td>{{$cita->id}}</td>
-            <td>{{$cita->especialidad}}</td>
-            <td>{{$cita->doctor}}</td>
+            <td>{{$cita->id_Especialidad}}</td>
+            <td>{{$cita->id_Doctor}}</td>
             <td>{{$cita->fecha}}</td>
             <td>{{$cita->hora}}</td>
             <td>

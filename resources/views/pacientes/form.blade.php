@@ -23,8 +23,8 @@
 <label for="apellidopaciente">Apellidos</label>
 <input type="text" name="apellidopaciente" value="{{ isset($paciente->apellidopaciente)?$paciente->apellidopaciente:old('apellido')}}" id="apellidopaciente">
 <br>
-<label for="tipodocumento">Tipo documento</label>
-<input type="text" name="tipodocumento" value="{{ isset($paciente->tipodocumento)?$paciente->tipodocumento:old('tipodocumento')}}"id="tipodocumento">
+<label for="id_Tipodocumento">Tipo documento</label>
+<input type="select" name="id_Tipodocumento" value="{{ isset($paciente->id_Tipodocumento)?$paciente->id_Tipodocumento:old('tipodocumento')}}"id="id_Tipodocumento">
 <br>
 <label for="documentopaciente">Documento</label>
 <input type="text" name="documentopaciente" value="{{ isset($paciente->documentopaciente)?$paciente->documentopaciente:old('documentopaciente')}}"id="documentopaciente">
@@ -38,8 +38,11 @@
 <label for="acudientepaciente">Acudiente</label>
 <input type="text" name="acudientepaciente" value="{{ isset($paciente->acudientepaciente)?$paciente->acudientepaciente:old('acudientepaciente')}}"id="acudientepaciente">
 <br>
-<label for="estado">Estado</label>
-<input type="text" name="estado" value="{{ isset($paciente->estado)?$paciente->estado:old('estado')}}"id="estado">
+<label for="contraseña">contraseña</label>
+<input type="password" name="contraseña" value="{{ isset($paciente->contraseña)?$paciente->contraseña:old('contraseña')}}"id="contraseña">
+<br>
+<label for="id_Estado">Estado</label>
+<input type="select" name="id_Estado" value="{{ isset($paciente->id_Estado)?$paciente->id_Estado:old('estado')}}"id="id_Estado">
 <br>
 <input type="submit" value="{{$modo}}">
 

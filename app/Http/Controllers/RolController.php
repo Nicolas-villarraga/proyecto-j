@@ -52,7 +52,6 @@ class RolController extends Controller
 
         $rol = request()->except('_token');
         Rol::insert($rol);
-        //return response()->json($cita);
 
         return redirect('rols')->with('mensaje','Rol creado con exito');
     }
@@ -107,7 +106,6 @@ class RolController extends Controller
         Rol::where('id','=',$id)->update($rol);
 
         $rol = Rol::findOrFail($id);
-        //return view('rols.edit',compact('rol'));
         return redirect('rols')->with('mensaje','Rol Modificado');
     }
 

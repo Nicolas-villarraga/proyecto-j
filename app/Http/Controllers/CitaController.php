@@ -41,10 +41,10 @@ class CitaController extends Controller
     {
         //
         $campos=[
-            'especialidad'=>'required|string|max:100',
-            'doctor'=>'required|string|max:50',
+            'id_Doctor'=>'required|string|max:50',
             'fecha'=>'required|date',
             'hora'=>'required|',  
+            'id_Especialidad'=>'required|string|max:100',
         ];
 
         $mensaje=[
@@ -56,7 +56,6 @@ class CitaController extends Controller
 
         $cita = request()->except('_token');
         Cita::insert($cita);
-        //return response()->json($cita);
 
         return redirect('citas')->with('mensaje','Cita creada con exito'); 
 
@@ -96,10 +95,10 @@ class CitaController extends Controller
     {
 
         $campos=[
-            'especialidad'=>'required|string|max:100',
-            'doctor'=>'required|string|max:50',
+            'id_Doctor'=>'required|string|max:50',
             'fecha'=>'required|date',
-            'hora'=>'required|string',  
+            'hora'=>'required|string',
+            'id_Especialidad'=>'required|string|max:100',
         ];
 
         $mensaje=[

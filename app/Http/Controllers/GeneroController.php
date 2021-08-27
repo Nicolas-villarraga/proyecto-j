@@ -102,10 +102,9 @@ class GeneroController extends Controller
         $this->validate($request, $campos,$mensaje);
 
         $genero = request()->except(['_token','_method']);
-        Genero::where('id','=',$id)->update($genero);
+        Genero::where('id_Genero','=',$id)->update($genero);
 
         $genero = Genero::findOrFail($id);
-        //return view('citas.edit',compact('cita'));
         return redirect('generos')->with('mensaje','Genero Modificado');
     }
 
