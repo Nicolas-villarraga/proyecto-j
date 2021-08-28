@@ -27,7 +27,11 @@
 <input type="time" name="hora" value="{{isset($cita->hora)?$cita->hora:old('hora')}}" id="hora">
 <br>
 <label for="id_Especialidad">Especialidad</label>
-<input type="text" name="id_Especialidad" value="{{ isset($cita->id_Especialidad)?$cita->id_Especialidad:old('id_Especialidad')}}" id="id_Especialidad">
+<select name="id_Especialidad" id="id_Especialidad">
+  @foreach ($especialistas as $especialista)
+      <option value="{{$especialista->id}}">{{$especialista->nombreespecialidad}}</option>
+  @endforeach
+</select>
 <br>
 <input type="submit" value="{{$modo}}">
 

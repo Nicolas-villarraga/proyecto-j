@@ -12,4 +12,10 @@ class Especialidad extends Model
     protected $fillable =[
         'nombreespecialidad',
     ];
+
+    
+    public function cita()
+    {
+        return $this->belongsTo('App\Models\Cita');
+    }
 }

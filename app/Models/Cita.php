@@ -17,4 +17,9 @@ class Cita extends Model
         'id_Paciente',
         'id_Estado',
     ];
+
+    public function Especialidad()
+    {
+        return $this->belongsTo(Especialidad::class,'id_Especialidad');
+    }
 }
