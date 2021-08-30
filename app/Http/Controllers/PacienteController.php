@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Estado;
+use App\Models\Genero;
 use App\Models\Paciente;
+use App\Models\Tipodocumento;
 use Illuminate\Http\Request;
 
 class PacienteController extends Controller
@@ -27,7 +30,11 @@ class PacienteController extends Controller
     public function create()
     {
         //
-        return view('pacientes.create');
+
+        $tipodocumentos=Tipodocumento::all();
+        $estados=Estado::all();
+        $generos=Genero::all();
+        return view('pacientes.create',compact('tipodocumentos','estados','generos'));
     }
 
     /**
@@ -42,12 +49,13 @@ class PacienteController extends Controller
         $campos=[
             'nombrepaciente'=>'required|string|max:100',
             'apellidopaciente'=>'required|string|max:100',
-            'tipodocumento'=>'required|string|max:100',
+            'id_Tipodocumento'=>'required|string|max:100',
             'documentopaciente'=>'required|string|max:100',
             'correopaciente'=>'required|string|max:100',
             'telefonopaciente'=>'required|string|max:100',
             'acudientepaciente'=>'required|string|max:100',
-            'estado'=>'required|string|max:100',
+            'id_Estado'=>'required|string|max:100',
+            'id_Genero'=>'required|string|max:100', 
         ];
 
         $mensaje=[
@@ -59,6 +67,7 @@ class PacienteController extends Controller
 
         $paciente = request()->except('_token');
         Paciente::insert($paciente);
+        
 
         return redirect('pacientes')->with('mensaje','Paciente creado con exito'); 
     }
@@ -84,7 +93,10 @@ class PacienteController extends Controller
     {
         //
         $paciente = Paciente::findOrFail($id);
-        return view('pacientes.edit',compact('paciente'));
+        $tipodocumentos=Tipodocumento::all();
+        $estados=Estado::all();
+        $generos=Genero::all();
+        return view('pacientes.edit',compact('paciente','tipodocumentos','estados','generos'));
     }
 
     /**
@@ -100,12 +112,13 @@ class PacienteController extends Controller
         $campos=[
             'nombrepaciente'=>'required|string|max:100',
             'apellidopaciente'=>'required|string|max:100',
-            'tipodocumento'=>'required|string|max:100',
+            'id_Tipodocumento'=>'required|string|max:100',
             'documentopaciente'=>'required|string|max:100',
             'correopaciente'=>'required|string|max:100',
             'telefonopaciente'=>'required|string|max:100',
             'acudientepaciente'=>'required|string|max:100',
-            'estado'=>'required|string|max:100', 
+            'id_Estado'=>'required|string|max:100', 
+            'id_Genero'=>'required|string|max:100', 
         ];
 
         $mensaje=[

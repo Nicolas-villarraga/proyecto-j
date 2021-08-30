@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Detalleproducto;
+use App\Models\Paciente;
 use Illuminate\Http\Request;
 
 class DetalleproductoController extends Controller
@@ -26,7 +27,8 @@ class DetalleproductoController extends Controller
     public function create()
     {
         //
-        return view('detalleproductos.create');
+        $pacientes=Paciente::all();
+        return view('detalleproductos.create',compact('pacientes'));
     }
 
     /**
@@ -79,7 +81,8 @@ class DetalleproductoController extends Controller
     {
         //
         $detalleproducto = Detalleproducto::findOrFail($id);
-        return view('detalleproductos.edit',compact('detalleproducto'));
+        $pacientes = Paciente::all();
+        return view('detalleproductos.edit',compact('detalleproducto','pacientes'));
     }
 
     /**

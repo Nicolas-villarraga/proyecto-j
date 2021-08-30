@@ -14,4 +14,14 @@ class Historiaclinica extends Model
         'id_Doctor',
         'id_Paciente',
     ];
+    
+    public function doctor()
+    {
+        return $this->belongsTo(Doctor::class,'id_Doctor');
+    }
+
+    public function paciente ()
+    {
+        return $this->belongsTo(Paciente::class,'id_Paciente');
+    }
 }

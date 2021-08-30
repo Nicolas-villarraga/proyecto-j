@@ -24,7 +24,11 @@
 <input type="text" name="apellidodoctor" value="{{ isset($doctor->apellidodoctor)?$doctor->apellidodoctor:old('apellido')}}" id="apellidodoctor">
 <br>
 <label for="id_Especialidad">Especialidad</label>
-<input type="select" name="id_Especialidad" value="{{ isset($doctor->id_Especialidad)?$doctor->id_Especialidad:old('doctor')}}"id="id_Especialidad">
+<select name="id_Especialidad" id="id_Especialidad">
+  @foreach ($especialidades as $especialidad)
+      <option value="{{$especialidad->id}}">{{$especialidad->nombreespecialidad}}</option>
+  @endforeach
+</select>
 <br>
 <input type="submit" value="{{$modo}}">
 

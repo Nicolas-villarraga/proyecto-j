@@ -22,6 +22,8 @@
         <tr>
             <th>ID</th>
             <th>Fecha</th>
+            <th>Doctor</th>
+            <th>Paciente</th>
             <th>Descripcion</th>
             <th>Acciones</th>
         </tr>
@@ -31,17 +33,19 @@
         <tr>
             <td>{{$historiaclinica->id}}</td>
             <td>{{$historiaclinica->fechacreacionhistoria}}</td>
+            <td>{{$historiaclinica->doctor->nombredoctor}}</td>
+            <td>{{$historiaclinica->paciente->nombrepaciente}}</td>
             <td>{{$historiaclinica->descripcionhistoriaclinica}}</td>
             <td>
                 
-                <a href="{{url('/historiaclinicas/'.$historiaclinica->id.'/edit')}}">
+                <a  href="{{url('/historiaclinicas/'.$historiaclinica->id.'/edit')}}">
                     editar
                 </a>
                  | 
-                <form action="{{ url('/historiaclinicas/'.$historiaclinica->id ) }}" method="post">
+                <form  action="{{ url('/historiaclinicas/'.$historiaclinica->id ) }}" method="post">
                 @csrf
                 @method('DELETE')
-                <input type="submit" onclick="return confirm('¿Deseas eleminar permanentemente?')" 
+                <input  type="submit" onclick="return confirm('¿Deseas eleminar permanentemente?')" 
                 value="borrar">
                 </form>
 

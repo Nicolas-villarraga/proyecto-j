@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Doctor;
+use App\Models\Especialidad;
 use Illuminate\Http\Request;
 use PhpParser\Comment\Doc;
 
@@ -28,7 +29,8 @@ class DoctorController extends Controller
     public function create()
     {
         //
-        return view('doctors.create');
+        $especialidades=Especialidad::all();
+        return view('doctors.create',compact('especialidades'));
     }
 
     /**
@@ -80,7 +82,8 @@ class DoctorController extends Controller
     {
         //
         $doctor = Doctor::findOrFail($id);
-        return view('doctors.edit',compact('doctor'));
+        $especialidades=Especialidad::all();
+        return view('doctors.edit',compact('doctor','especialidades'));
     }
 
     /**

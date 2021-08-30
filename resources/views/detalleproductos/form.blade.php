@@ -29,6 +29,13 @@
 <label for="valorproducto">valor</label>
 <input type="number" name="valorproducto" value="{{isset($detalleproducto->valorproducto)?$detalleproducto->valorproducto:old('valorproducto')}}" id="valorproducto">
 <br>
+<label for="id_Paciente">Cliente</label>
+<select name="id_Paciente" id="id_Paciente">
+  @foreach ($pacientes as $paciente)
+      <option value="{{$paciente->id}}">{{$paciente->nombrepaciente}}</option>
+  @endforeach
+</select>
+<br>
 <input type="submit" value="{{$modo}}">
 
 <a href="{{url('detalleproductos/')}}">Volver</a>

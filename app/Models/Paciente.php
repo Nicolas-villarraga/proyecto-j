@@ -16,7 +16,22 @@ class Paciente extends Model
         'correopaciente',
         'telefonopaciente',
         'acudientepaciente',
-        'id_Estado',
+        'id_estado',
         'id_Genero',
     ];
+
+    public function tipodocumento()
+    {
+       return $this->belongsTo(Tipodocumento::class,'id_Tipodocumento');
+    }
+
+    public function estado()
+    {
+        return $this->belongsTo(Estado::class,'id_estado');
+    }
+
+    public function genero()
+    {
+        return $this->belongsTo(Genero::class,'id_Genero');
+    }
 }

@@ -25,6 +25,7 @@
             <th>Descripcion</th>
             <th>Cantidad</th>
             <th>Valor</th>
+            <th>Paciente</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -36,6 +37,7 @@
             <td>{{$detalleproducto->descripcionproducto}}</td>
             <td>{{$detalleproducto->cantidadproducto}}</td>
             <td>{{$detalleproducto->valorproducto}}</td>
+            <td>{{$detalleproducto->paciente->nombrepaciente}}</td>
             <td>
                 
                 <a href="{{url('/detalleproductos/'.$detalleproducto->id.'/edit')}}">

@@ -18,4 +18,9 @@ class Detalleproducto extends Model
         'id_Estado',
         'id_Producto',
     ];
+
+    public function paciente()
+    {
+        return $this->belongsTo(Paciente::class,'id_Paciente');
+    }
 }

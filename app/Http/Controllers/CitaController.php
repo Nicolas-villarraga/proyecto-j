@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cita;
+use App\Models\Doctor;
 use App\Models\Especialidad;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
@@ -29,8 +30,14 @@ class CitaController extends Controller
     public function create()
     {
         //
+        $doctores=Doctor::all();
         $especialistas=Especialidad::all();
-        return view('citas.create',compact('especialistas'));
+        return view('citas.create',compact('doctores','especialistas'));
+
+        
+       
+      
+        
     }
 
     /**

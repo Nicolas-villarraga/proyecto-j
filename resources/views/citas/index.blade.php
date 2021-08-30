@@ -33,7 +33,7 @@
         <tr>
             <td>{{$cita->id}}</td>
             <td>{{$cita->Especialidad->nombreespecialidad}}</td>
-            <td>{{$cita->id_Doctor}}</td>
+            <td>{{$cita->Doctor->nombredoctor}}</td>
             <td>{{$cita->fecha}}</td>
             <td>{{$cita->hora}}</td>
             <td>

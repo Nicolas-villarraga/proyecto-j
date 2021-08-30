@@ -18,7 +18,11 @@
 @endif
 
 <label for="id_Doctor">Doctor</label>
-<input type="text" name="id_Doctor" value="{{ isset($cita->id_Doctor)?$cita->id_Doctor:old('id_Doctor')}}" id="id_Doctor">
+<select name="id_Doctor" id="id_Doctor">
+@foreach ($doctores as $doctor)
+   <option value="{{$doctor->id}}">{{$doctor->nombredoctor}}</option>
+@endforeach
+</select>
 <br>
 <label for="fecha">Fecha</label>
 <input type="date" name="fecha" value="{{ isset($cita->fecha)?$cita->fecha:old('fecha')}}"id="fecha">

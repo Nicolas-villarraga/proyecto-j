@@ -15,4 +15,9 @@ class Doctor extends Model
         'id_Tipodocumento',
         'id_Genero',
     ];
+
+    public function Especialidad()
+    {
+      return $this->belongsTo(Especialidad::class,'id_Especialidad');
+    }
 }

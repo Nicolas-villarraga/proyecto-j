@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Doctor;
 use App\Models\Historiaclinica;
+use App\Models\Paciente;
 use Illuminate\Http\Request;
+use PhpParser\Comment\Doc;
 
 class HistoriaclinicaController extends Controller
 {
@@ -27,7 +30,10 @@ class HistoriaclinicaController extends Controller
     public function create()
     {
         //
-        return view('historiaclinicas.create');
+
+        $doctores=Doctor::all();
+        $pacientes = Paciente::all();
+        return view('historiaclinicas.create',compact('doctores','pacientes'));
     }
 
     /**
@@ -78,7 +84,9 @@ class HistoriaclinicaController extends Controller
     {
         //
         $historiaclinica = Historiaclinica::findOrFail($id);
-        return view('historiaclinicas.edit',compact('historiaclinica'));
+        $doctores=Doctor::all();
+        $pacientes = Paciente::all();
+        return view('historiaclinicas.edit',compact('historiaclinica','doctores','pacientes'));
     }
 
     /**
