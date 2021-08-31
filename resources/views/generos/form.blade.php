@@ -17,7 +17,7 @@
 
 @endif
 
-<label for=nombregenero">Especialidad</label>
+<label for=nombregenero">Genero</label>
 <input type="text" name="nombregenero" value="{{ isset($genero->nombregenero)?$genero->nombregenero:old('genero')}}" id="nombregenero">
 <br>
 <input type="submit" value="{{$modo}}">

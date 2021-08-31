@@ -11,7 +11,7 @@
 
 @method('PATCH')
 
-@include('pacientes.form',['modo'=>'Modificar']);
+@include('pacientes.form',['modo'=>'Modificar'])
 </form>
 </div>    
 @endsection
