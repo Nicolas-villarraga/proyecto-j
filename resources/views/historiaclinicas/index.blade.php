@@ -15,7 +15,11 @@
     </button>
 </div>
 
-<a href="{{url('historiaclinicas/create')}}">Nueva Historia</a>
+<a href="{{url('historiaclinicas/create')}}">Nueva Historia</a> 
+<form class="d-flex">
+    <input class="form-control me-1" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-warning" type="submit">Buscar</button>
+  </form>
 
 <table class="table table-dark">
     <thead class="thead-dark">

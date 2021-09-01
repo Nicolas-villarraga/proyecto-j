@@ -16,7 +16,10 @@
 </div>
 
 <a href="{{url('pacientes/create')}}">Nuevo paciente</a>
-
+<form class="d-flex">
+    <input class="form-control me-1" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-warning" type="submit">Buscar</button>
+  </form>
 <table class="table table-dark">
     <thead class="thead-dark">
         <tr>
@@ -39,7 +42,7 @@
             <td>{{$paciente->id}}</td>
             <td>{{$paciente->nombrepaciente}}</td>
             <td>{{$paciente->apellidopaciente}}</td>
-            <td>{{$paciente->tipodocumento->nombredocumento}}</td>
+            <td>{{$paciente->tipodocumento->nombretipodocumento}}</td>
             <td>{{$paciente->documentopaciente}}</td>
             <td>{{$paciente->correopaciente}}</td>
             <td>{{$paciente->telefonopaciente}}</td>
@@ -58,6 +61,13 @@
                 <input class="btn btn-outline-warning" type="submit" onclick="return confirm('¿Deseas eleminar permanentemente?')" 
                 value="borrar">
                 </form>
+                
+                <a class="btn btn-outline-warning" href="{{url('/pacientes/'.$paciente->id)}}">
+                Detalles
+                </a>
+
+
+              
 
 
 

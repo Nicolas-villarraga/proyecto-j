@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Estado;
 use App\Models\Genero;
+use App\Models\Historiaclinica;
 use App\Models\Paciente;
 use App\Models\Tipodocumento;
 use Illuminate\Http\Request;
@@ -78,9 +79,11 @@ class PacienteController extends Controller
      * @param  \App\Models\Paciente  $paciente
      * @return \Illuminate\Http\Response
      */
-    public function show(Paciente $paciente)
+    public function show($id)
     {
         //
+        $paciente = Paciente::find($id);
+        return view('pacientes.show',compact('paciente'));
     }
 
     /**
