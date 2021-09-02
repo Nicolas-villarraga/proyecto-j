@@ -90,7 +90,9 @@ class CitaController extends Controller
     public function edit($id)
     {
         $cita = Cita::findOrFail($id);
-        return view('citas.edit',compact('cita'));
+        $doctores=Doctor::all();
+        $especialistas=Especialidad::all();
+        return view('citas.edit',compact('cita','doctores','especialistas'));
     }
 
     /**
