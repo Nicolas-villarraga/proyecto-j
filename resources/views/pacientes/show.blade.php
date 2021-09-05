@@ -16,15 +16,11 @@
                 </tr>
                 <tr>
                     <td>Tipo de Documento</td>
-                    <td>{{$paciente->tipodocumento->nombretipodocumento}}</td>
+                    <td>{{$paciente->tipodocumento->nombredocumento}}</td>
                 </tr>
                 <tr>
                     <td>Documento</td>
                     <td>{{$paciente->documentopaciente}}</td>
-                </tr>
-                <tr>
-                    <td>Correo</td>
-                    <td>{{$paciente->correopaciente}}</td>
                 </tr>
                 <tr>
                     <td>Telefono</td>
@@ -33,6 +29,14 @@
                 <tr>
                     <td>Acudiente</td>
                     <td>{{$paciente->acudientepaciente}}</td>
+                </tr>
+                <tr>
+                    <td>Correo</td>
+                    <td>{{$paciente->correopaciente}}</td>
+                </tr>
+                <tr>
+                    <td>Contraseña</td>
+                    <td>{{$paciente->contraseña}}</td>
                 </tr>
                 <tr>
                     <td>Estado</td>

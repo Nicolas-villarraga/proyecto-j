@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cita;
 use App\Models\Doctor;
-use App\Models\Especialidad;
-use App\Models\Estado;
-use App\Models\Paciente;
+use App\Models\Historiaclinica;
+use App\Models\Proceso;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpKernel\Event\ViewEvent;
 
-class CitaController extends Controller
+class ProcesoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,8 +17,8 @@ class CitaController extends Controller
     public function index()
     {
         //
-        $cita['citas']=Cita::paginate(5);
-        return view('citas.index',$cita);
+        $procesos['procesos']=Proceso::paginate(5);
+        return view('procesos.index',$procesos);
     }
 
     /**
@@ -33,15 +30,8 @@ class CitaController extends Controller
     {
         //
         $doctores=Doctor::all();
-        $especialistas=Especialidad::all();
-        $pacientes= Paciente::all();
-        $estados= Estado::all();
-        return view('citas.create',compact('doctores','especialistas','pacientes','estados'));
-
-        
-       
-      
-        
+        $historiaclinicas=Historiaclinica::all();
+        return view('procesos.create',compact('doctores','historiaclinicas'));
     }
 
     /**
@@ -54,10 +44,10 @@ class CitaController extends Controller
     {
         //
         $campos=[
-            'id_Doctor'=>'required|string|max:50',
-            'fecha'=>'required|date',
-            'hora'=>'required|',  
-            'id_Especialidad'=>'required|string|max:100',
+            'fechaproceso'=>'required|string|max:50',
+            'observacionesproceso'=>'required',
+            'id_Doctor'=>'required|string',  
+            'id_Historiaclinica'=>'required|string',
         ];
 
         $mensaje=[
@@ -67,20 +57,19 @@ class CitaController extends Controller
         $this->validate($request, $campos,$mensaje);
 
 
-        $cita = request()->except('_token');
-        Cita::insert($cita);
+        $procesos = request()->except('_token');
+        Proceso::insert($procesos);
 
-        return redirect('citas')->with('mensaje','Cita creada con exito'); 
-
+        return redirect('procesos')->with('mensaje','proceso creado con exito'); 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Cita  $cita
+     * @param  \App\Models\Proceso  $proceso
      * @return \Illuminate\Http\Response
      */
-    public function show(Cita $cita)
+    public function show(Proceso $proceso)
     {
         //
     }
@@ -88,29 +77,28 @@ class CitaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Cita  $cita
+     * @param  \App\Models\Proceso  $proceso
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $cita = Cita::findOrFail($id);
+        //
+        $procesos = Proceso::findOrFail($id);
         $doctores=Doctor::all();
-        $especialistas=Especialidad::all();
-        $pacientes= Paciente::all();
-        $estados= Estado::all();
-        return view('citas.edit',compact('cita','doctores','especialistas','pacientes','estados'));
+        $historiaclinicas=Historiaclinica::all();
+        return view('procesos.edit',compact('procesos','doctores','historiaclinicas'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Cita  $cita
+     * @param  \App\Models\Proceso  $proceso
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
-
+        //
         $campos=[
             'id_Doctor'=>'required|string|max:50',
             'fecha'=>'required|date',
@@ -124,24 +112,23 @@ class CitaController extends Controller
 
         $this->validate($request, $campos,$mensaje);
 
-        $cita = request()->except(['_token','_method']);
-        Cita::where('id','=',$id)->update($cita);
+        $procesos = request()->except(['_token','_method']);
+        Proceso::where('id','=',$id)->update($procesos);
 
-        $cita = Cita::findOrFail($id);
-        //return view('citas.edit',compact('cita'));
-        return redirect('citas')->with('mensaje','cita Modificada');
-
+        $procesos = Proceso::findOrFail($id);
+        return redirect('procesos')->with('mensaje','proceso Modificada');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Cita  $cita
+     * @param  \App\Models\Proceso  $proceso
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        Cita::destroy($id);
-        return redirect('citas')->with('mensaje','cita cancelada');
+        //
+        Proceso::destroy($id);
+        return redirect('procesos')->with('mensaje','proceso eliminado');
     }
 }

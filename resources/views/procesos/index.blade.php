@@ -1,4 +1,4 @@
-<h2>lista de productos</h2>
+<h2>lista de citas</h2>
 
 @extends('layouts.app')
 @section('content')
@@ -15,37 +15,33 @@
     </button>
 </div>
 
-<a href="{{url('productos/create')}}">Nuevo producto</a>
+<a href="{{url('procesos/create')}}">Nueva Proceso</a>
 
 <table class="table table-dark">
     <thead class="thead-dark">
         <tr>
             <th>ID</th>
-            <th>Nombre</th>
-            <th>Descripcion</th>
-            <th>Precio Inicial</th>
-            <th>Precio Final</th>
-            <th>Cantidad</th>
+            <th>fecha</th>
+            <th>observaciones</th>
             <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
-        @foreach ($productos as $producto)
+        @foreach ($procesos as $proceso)
         <tr>
-            <td>{{$producto->id}}</td>
-            <td>{{$producto->nombreproducto}}</td>
-            <td>{{$producto->descripcionproducto}}</td>
-            <td>{{$producto->preciocompra}}</td>
-            <td>{{$producto->precioventa}}</td>
-            <td>{{$producto->cantidadproducto}}</td>
-            <td>{{$producto->proveedor->nombreproveedor}}</td>
+            <td>{{$proceso ->id}}</td>
+            <td>{{$proceso->fechaproceso}}</td>
+            <td>{{$proceso->observacionesproceso}}</td>
+            <td>{{$proceso->Doctor->nombredoctor}}</td>
+            <td>{{$proceso->historia->id}}</td>
+            
             <td>
                 
-                <a href="{{url('/productos/'.$producto->id.'/edit')}}">
+                <a href="{{url('/procesos/'.$proceso->id.'/edit')}}">
                     editar
                 </a>
                  | 
-                <form action="{{ url('/productos/'.$producto->id ) }}" method="post">
+                <form action="{{ url('/procesos/'.$proceso->id ) }}" method="post">
                 @csrf
                 @method('DELETE')
                 <input type="submit" onclick="return confirm('¿Deseas eleminar permanentemente?')" 

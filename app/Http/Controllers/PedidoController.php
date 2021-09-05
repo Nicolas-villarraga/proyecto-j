@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Paciente;
 use App\Models\Pedido;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,8 @@ class PedidoController extends Controller
     public function create()
     {
         //
-        return view('pedidos.create');
+        $pacientes=Paciente::all();
+        return view('pedidos.create',compact('pacientes'));
     }
 
     /**
@@ -40,8 +42,6 @@ class PedidoController extends Controller
     {
         //
         $campos=[
-            'fecha'=>'required|date|max:100',
-            'hora'=>'required',
             'totalpedido'=>'required',
             'observacionespedido'=>'required|string|max:100',  
         ];
@@ -79,7 +79,8 @@ class PedidoController extends Controller
     {
         //
         $pedido = Pedido::findOrFail($id);
-        return view('pedidos.edit',compact('pedido'));
+        $pacientes=Paciente::all();
+        return view('pedidos.edit',compact('pedido','pacientes'));
     }
 
     /**
@@ -93,8 +94,6 @@ class PedidoController extends Controller
     {
         //
         $campos=[
-            'fecha'=>'required|date|max:100',
-            'hora'=>'required',
             'totalpedido'=>'required',
             'observacionespedido'=>'required|string|max:100',    
         ];

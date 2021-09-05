@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Doctor;
 use App\Models\Especialidad;
+use App\Models\Genero;
+use App\Models\Rol;
+use App\Models\Tipodocumento;
 use Illuminate\Http\Request;
 use PhpParser\Comment\Doc;
 
@@ -30,7 +33,10 @@ class DoctorController extends Controller
     {
         //
         $especialidades=Especialidad::all();
-        return view('doctors.create',compact('especialidades'));
+        $tipodocumentos=Tipodocumento::all();
+        $generos=Genero::all();
+        $rols=Rol::all();
+        return view('doctors.create',compact('especialidades','tipodocumentos','generos','rols'));
     }
 
     /**
@@ -45,7 +51,12 @@ class DoctorController extends Controller
         $campos=[
             'nombredoctor'=>'required|string|max:100',
             'apellidodoctor'=>'required|string|max:50',
-            'especialidad'=>'required|string|max:50',  
+            'id_Especialidad'=>'required|string|max:50',
+            'id_Tipodocumento'=>'required|string|max:50',
+            'documentodoctor'=>'required|string|max:50',
+            'correodoctor'=>'required|string|max:50',
+            'contraseña'=>'required|string|max:50',
+            'id_Genero'=>'required|string|max:50',
         ];
 
         $mensaje=[
@@ -83,7 +94,10 @@ class DoctorController extends Controller
         //
         $doctor = Doctor::findOrFail($id);
         $especialidades=Especialidad::all();
-        return view('doctors.edit',compact('doctor','especialidades'));
+        $tipodocumentos=Tipodocumento::all();
+        $generos=Genero::all();
+        $rols=Rol::all();
+        return view('doctors.edit',compact('doctor','especialidades','tipodocumentos','generos','rols'));
     }
 
     /**
@@ -100,7 +114,13 @@ class DoctorController extends Controller
             
             'nombredoctor'=>'required|string|max:100',
             'apellidodoctor'=>'required|string|max:50',
-            'especialidad'=>'required|string|max:50', 
+            'id_Especialidad'=>'required|string|max:50',
+            'id_Tipodocumento'=>'required|string|max:50',
+            'documentodoctor'=>'required|string|max:50',
+            'correodoctor'=>'required|string|max:50',
+            'contraseña'=>'required|string|max:50',
+            'id_Genero'=>'required|string|max:50',
+ 
         ];
 
         $mensaje=[

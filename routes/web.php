@@ -2,7 +2,7 @@
 
 
 use App\Http\Controllers\CitaController;
-use App\Http\Controllers\DetalleproductoController;
+use App\Http\Controllers\DetalleController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\EspecialidadController;
 use App\Http\Controllers\EstadoController;
@@ -10,12 +10,13 @@ use App\Http\Controllers\GeneroController;
 use App\Http\Controllers\HistoriaclinicaController;
 use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\PedidoController;
+use App\Http\Controllers\ProcesoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProveedorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\TipodocumentoController;
-use App\Http\Controllers\UsuarioController;
+use App\Models\Proceso;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +34,7 @@ Route::get('/', function () {
 });
 
 Route::resource('citas',CitaController::class);
-Route::resource('detalleproductos', DetalleproductoController::class);
+Route::resource('detalles',DetalleController::class);
 Route::resource('tipodocumentos',TipodocumentoController::class);
 Route::resource('rols',RolController::class);
 Route::resource('estados',EstadoController::class);
@@ -46,6 +47,7 @@ Route::resource('historiaclinicas',HistoriaclinicaController::class);
 Route::resource('pedidos',PedidoController::class);
 Route::resource('productos',ProductoController::class);
 Route::resource('proveedors',ProveedorController::class);
+Route::resource('procesos',ProcesoController::class);
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

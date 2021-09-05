@@ -59,7 +59,8 @@
         </tr>
         @endforeach
     </tbody>
-
 </table>
+<a class="btn btn-outline-warning" href="{{url('/pacientes/')}}">Pacientes</a>
+<a class="btn btn-outline-warning" href="{{url('/procesos/')}}">Procesos</a>
 </div>
 @endsection

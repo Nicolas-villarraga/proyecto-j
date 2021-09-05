@@ -55,6 +55,7 @@ class PacienteController extends Controller
             'correopaciente'=>'required|string|max:100',
             'telefonopaciente'=>'required|string|max:100',
             'acudientepaciente'=>'required|string|max:100',
+            'contraseña'=>'required|string',
             'id_Estado'=>'required|string|max:100',
             'id_Genero'=>'required|string|max:100', 
         ];
@@ -120,6 +121,7 @@ class PacienteController extends Controller
             'correopaciente'=>'required|string|max:100',
             'telefonopaciente'=>'required|string|max:100',
             'acudientepaciente'=>'required|string|max:100',
+            'contraseña'=>'required|string',
             'id_Estado'=>'required|string|max:100', 
             'id_Genero'=>'required|string|max:100', 
         ];

@@ -10,6 +10,6 @@ class Tipodocumento extends Model
     use HasFactory;
 
     protected $fillable =[
-        'nombretipodocumento',
+        'nombredocumento',
     ];
 }

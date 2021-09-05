@@ -28,4 +28,13 @@ class Cita extends Model
         return $this->belongsTo(Doctor::class,'id_Doctor'); 
 
     }
+    
+    public function Paciente()
+    {
+        return $this->belongsTo(Paciente::class,'id_Paciente');
+    }
+    public function Estado()
+    {
+        return $this->belongsTo(Estado::class,'id_Estado');
+    }
 }

@@ -27,7 +27,7 @@ class Paciente extends Model
 
     public function estado()
     {
-        return $this->belongsTo(Estado::class,'id_estado');
+        return $this->belongsTo(Estado::class,'id_Estado');
     }
 
     public function genero()

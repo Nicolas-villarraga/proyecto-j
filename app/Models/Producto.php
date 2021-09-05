@@ -15,5 +15,11 @@ class Producto extends Model
         'preciocompra',
         'precioventa',
         'cantidadproducto',
+        'id_Proveedor',
     ];
+
+    public function proveedor()
+    {
+        return $this->belongsTo(Proveedor::class,'id_Proveedor');
+    }
 }

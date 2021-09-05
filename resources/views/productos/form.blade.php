@@ -32,6 +32,13 @@
 <label for="cantidadproducto">Cantidad</label>
 <input type="number" name="cantidadproducto" value="{{isset($producto->cantidadproducto)?$producto->cantidadproducto:old('cantidad')}}" id="cantidadproducto">
 <br>
+<label for="id_Proveedor">Proveedor</label>
+<select name="id_Proveedor" id="id_Proveedor">
+  @foreach ($proveedors as $proveedor)
+      <option value="{{$proveedor->id}}">{{$proveedor->nombreproveedor}}</option>
+  @endforeach
+</select>
+<br>
 <input type="submit" value="{{$modo}}">
 
 <a href="{{url('productos/')}}">Volver</a>

@@ -10,9 +10,14 @@ class Pedido extends Model
     use HasFactory;
 
     protected $fillable =[
-        'fecha',
-        'hora',
+        'fechapedido',
+        'horapedido',
         'totalpedido',
         'observacionespedido',
     ];
+
+    public function paciente()
+    {
+        return $this->belongsTo(Pedido::class,'id_Paciente');
+    }
 }

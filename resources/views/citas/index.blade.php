@@ -21,10 +21,9 @@
     <thead class="thead-dark">
         <tr>
             <th>ID</th>
+            <th>fecha y hora</th>
             <th>Especialidad</th>
             <th>doctor</th>
-            <th>fecha</th>
-            <th>hora</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -32,10 +31,12 @@
         @foreach ($citas as $cita)
         <tr>
             <td>{{$cita->id}}</td>
+            <td>{{$cita->fechayhora}}</td>
             <td>{{$cita->Especialidad->nombreespecialidad}}</td>
             <td>{{$cita->Doctor->nombredoctor}}</td>
-            <td>{{$cita->fecha}}</td>
-            <td>{{$cita->hora}}</td>
+            <td>{{$cita->Paciente->nombrepaciente}}</td>
+            <td>{{$cita->Estado->nombreestado}}</td>
+            
             <td>
                 
                 <a href="{{url('/citas/'.$cita->id.'/edit')}}">
@@ -57,5 +58,7 @@
     </tbody>
 
 </table>
+<a class="btn btn-outline-warning" href="{{url('/procesos/')}}">Procesos</a>
+<a class="btn btn-outline-warning" href="{{url('/detalles/')}}">Detalle de Pedidos</a>
 </div>
 @endsection

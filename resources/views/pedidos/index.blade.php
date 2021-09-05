@@ -32,12 +32,11 @@
         @foreach ($pedidos as $pedido)
         <tr>
             <td>{{$pedido->id}}</td>
-            <td>{{$pedido->fecha}}</td>
-            <td>{{$pedido->hora}}</td>
+            <td>{{$pedido->fechapedido}}</td>
+            <td>{{$pedido->horapedido}}</td>
             <td>{{$pedido->totalpedido}}</td>
             <td>{{$pedido->observacionespedido}}</td>
             <td>
-                
                 <a href="{{url('/pedidos/'.$pedido->id.'/edit')}}">
                     editar
                 </a>

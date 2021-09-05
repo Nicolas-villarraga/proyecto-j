@@ -24,16 +24,27 @@
 @endforeach
 </select>
 <br>
-<label for="fecha">Fecha</label>
-<input type="date" name="fecha" value="{{ isset($cita->fecha)?$cita->fecha:old('fecha')}}"id="fecha">
-<br>
-<label for="hora">Hora</label>
-<input type="time" name="hora" value="{{isset($cita->hora)?$cita->hora:old('hora')}}" id="hora">
+<label for="fechayhora">Fecha y hora</label>
+<input type="dateTime" name="fechayhora" value="{{ isset($cita->fechayhora)?$cita->fechayhora:old('fechayhora')}}"id="fechayhora">
 <br>
 <label for="id_Especialidad">Especialidad</label>
 <select name="id_Especialidad" id="id_Especialidad">
   @foreach ($especialistas as $especialista)
       <option value="{{$especialista->id}}">{{$especialista->nombreespecialidad}}</option>
+  @endforeach
+</select>
+<br>
+<label for="id_Paciente">Paciente</label>
+<select name="id_Paciente" id="id_Paciente">
+  @foreach ($pacientes as $paciente)
+      <option value="{{$paciente->id}}">{{$paciente->nombrepaciente}}</option>
+  @endforeach
+</select>
+<br>
+<label for="id_Estado">Estado</label>
+<select name="id_Estado" id="id_Estado">
+  @foreach ($estados as $estado)
+      <option value="{{$estado->id}}">{{$estado->nombreestado}}</option>
   @endforeach
 </select>
 <br>

@@ -24,6 +24,9 @@
             <th>Nombres</th>
             <th>Apellidos</th>
             <th>Especialidad</th>
+            <th>Tipo de Documento</th>
+            <th>Documento</th>
+            <th>Correo</th>
             <th>Acciones</th>
 
         </tr>
@@ -35,6 +38,9 @@
             <td>{{$doctor->nombredoctor}}</td>
             <td>{{$doctor->apellidodoctor}}</td>
             <td>{{$doctor->Especialidad->nombreespecialidad}}</td>
+            <td>{{$doctor->Tipodocumento->nombredocumento}}</td>
+            <td>{{$doctor->documentodoctor}}</td>
+            <td>{{$doctor->correodoctor}}</td>
             <td>
                 
                 <a href="{{url('/doctors/'.$doctor->id.'/edit')}}">
@@ -56,5 +62,11 @@
     </tbody>
 
 </table>
+<a class="btn btn-outline-warning" href="{{url('/citas/')}}">Citas</a>
+<a class="btn btn-outline-warning" href="{{url('/productos/')}}">inventario</a>
+<a class="btn btn-outline-warning" href="{{url('/historiaclinicas/')}}">Historias</a>
+<a class="btn btn-outline-warning" href="{{url('/pacientes/')}}">Pacientes</a>
+<a class="btn btn-outline-warning" href="{{url('/pedidos/')}}">Pedidos</a>
+<a class="btn btn-outline-warning" href="{{url('/proveedors/')}}">Proveedores</a>
 </div>
 @endsection

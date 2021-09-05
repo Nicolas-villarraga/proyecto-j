@@ -1,4 +1,4 @@
-<h2>lista de productos</h2>
+<h2>lista de detalle producto</h2>
 
 @extends('layouts.app')
 @section('content')
@@ -15,7 +15,7 @@
     </button>
 </div>
 
-<a href="{{url('productos/create')}}">Nuevo producto</a>
+<a href="{{url('detalles/create')}}">Nuevo detalle</a>
 
 <table class="table table-dark">
     <thead class="thead-dark">
@@ -23,32 +23,31 @@
             <th>ID</th>
             <th>Nombre</th>
             <th>Descripcion</th>
-            <th>Precio Inicial</th>
-            <th>Precio Final</th>
             <th>Cantidad</th>
+            <th>Valor</th>
             <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
-        @foreach ($productos as $producto)
+        @foreach ($detalles as $detalle)
         <tr>
-            <td>{{$producto->id}}</td>
-            <td>{{$producto->nombreproducto}}</td>
-            <td>{{$producto->descripcionproducto}}</td>
-            <td>{{$producto->preciocompra}}</td>
-            <td>{{$producto->precioventa}}</td>
-            <td>{{$producto->cantidadproducto}}</td>
-            <td>{{$producto->proveedor->nombreproveedor}}</td>
+            <td>{{$detalle->id}}</td>
+            <td>{{$detalle->nombreproducto}}</td>
+            <td>{{$detalle->descripcionproducto}}</td>
+            <td>{{$detalle->cantidadproducto}}</td>
+            <td>{{$detalle->valorproducto}}</td>
+            <td>{{$detalle->producto->nombreproducto}}</td>
+            <td>{{$detalle->pedido->id}}</td>
             <td>
                 
-                <a href="{{url('/productos/'.$producto->id.'/edit')}}">
+                <a href="{{url('/detalles/'.$detalles->id.'/edit')}}">
                     editar
                 </a>
                  | 
-                <form action="{{ url('/productos/'.$producto->id ) }}" method="post">
+                <form action="{{ url('/detalles/'.$detalle->id ) }}" method="post">
                 @csrf
                 @method('DELETE')
-                <input type="submit" onclick="return confirm('¿Deseas eleminar permanentemente?')" 
+                <input type="submit"   onclick="return confirm('¿Deseas eleminar permanentemente?')" 
                 value="borrar">
                 </form>
 
