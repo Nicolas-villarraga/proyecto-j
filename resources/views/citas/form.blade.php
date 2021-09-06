@@ -24,8 +24,11 @@
 @endforeach
 </select>
 <br>
-<label for="fechayhora">Fecha y hora</label>
-<input type="dateTime" name="fechayhora" value="{{ isset($cita->fechayhora)?$cita->fechayhora:old('fechayhora')}}"id="fechayhora">
+<label for="fecha">Fecha</label>
+<input type="date" name="fecha" value="{{ isset($cita->fecha)?$cita->fecha:old('fecha')}}"id="fecha">
+<br>
+<label for="hora">Hora</label>
+<input type="time" name="hora" value="{{ isset($cita->hora)?$cita->hora:old('hora')}}"id="hora">
 <br>
 <label for="id_Especialidad">Especialidad</label>
 <select name="id_Especialidad" id="id_Especialidad">

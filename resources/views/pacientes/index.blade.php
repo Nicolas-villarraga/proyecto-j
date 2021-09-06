@@ -14,11 +14,10 @@
 </div>
 
 <a href="{{url('pacientes/create')}}">Nuevo paciente</a>
-<form class="d-flex">
-    <input class="form-control me-1" type="search" placeholder="Search" aria-label="Search">
-    <a class="btn btn-outline-warning" type="submit">Buscar</a>
-  </form>
+
 <table class="table table-dark">
+ 
+
     <thead class="thead-dark">
         <tr>
             <th>ID</th>

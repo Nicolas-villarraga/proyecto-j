@@ -21,7 +21,8 @@
     <thead class="thead-dark">
         <tr>
             <th>ID</th>
-            <th>fecha y hora</th>
+            <th>fecha</th>
+            <th>Hora</th>
             <th>Especialidad</th>
             <th>doctor</th>
             <th>Acciones</th>
@@ -31,7 +32,8 @@
         @foreach ($citas as $cita)
         <tr>
             <td>{{$cita->id}}</td>
-            <td>{{$cita->fechayhora}}</td>
+            <td>{{$cita->fecha}}</td>
+            <td>{{$cita->hora}}</td>
             <td>{{$cita->Especialidad->nombreespecialidad}}</td>
             <td>{{$cita->Doctor->nombredoctor}}</td>
             <td>{{$cita->Paciente->nombrepaciente}}</td>
