@@ -1,4 +1,4 @@
-<h2>lista de productos</h2>
+<h2>listadeproductos</h2>
 
 @extends('layouts.app')
 @section('content')
