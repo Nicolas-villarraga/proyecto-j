@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Doctor;
 use App\Models\Historiaclinica;
 use App\Models\Paciente;
+use App\Models\Proceso;
 use Illuminate\Http\Request;
 use PhpParser\Comment\Doc;
 
@@ -46,8 +47,8 @@ class HistoriaclinicaController extends Controller
     {
         //
         $campos=[
-            'fechacreacionhistoria'=>'required|date|max:100',
-            'descripcionhistoriaclinica'=>'required|string',
+            'fechadecreacionhistoria'=>'required|date|max:100',
+            'descripcionhistoria'=>'required|string',
         ];
 
         $mensaje=[
@@ -69,9 +70,10 @@ class HistoriaclinicaController extends Controller
      * @param  \App\Models\Historiaclinica  $historiaclinica
      * @return \Illuminate\Http\Response
      */
-    public function show(Historiaclinica $historiaclinica)
+    public function show($id)
     {
-        //
+        $historiaclinica = Historiaclinica::find($id);
+        return view('historiaclinicas.show',compact('historiaclinica'));
     }
 
     /**
@@ -100,8 +102,8 @@ class HistoriaclinicaController extends Controller
     {
         //
         $campos=[
-            'fechacreacionhistoria'=>'required|date',
-            'descripcionhistoriaclinica'=>'required|string',
+            'fechadecreacionhistoria'=>'required|date',
+            'descripcionhistoria'=>'required|string',
 
 
         ];
@@ -131,4 +133,5 @@ class HistoriaclinicaController extends Controller
         Historiaclinica::destroy($id);
         return redirect('historiaclinicas')->with('mensaje','Historia eliminada');
     }
+    
 }

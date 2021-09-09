@@ -16,11 +16,6 @@
 </div>
 
 <a href="{{url('historiaclinicas/create')}}">Nueva Historia</a> 
-<form class="d-flex">
-    <input class="form-control me-1" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-warning" type="submit">Buscar</button>
-  </form>
-
 <table class="table table-dark">
     <thead class="thead-dark">
         <tr>
@@ -36,10 +31,10 @@
         @foreach ($historiaclinicas as $historiaclinica)
         <tr>
             <td>{{$historiaclinica->id}}</td>
-            <td>{{$historiaclinica->fechacreacionhistoria}}</td>
+            <td>{{$historiaclinica->fechadecreacionhistoria}}</td>
             <td>{{$historiaclinica->doctor->nombredoctor}}</td>
             <td>{{$historiaclinica->paciente->nombrepaciente}}</td>
-            <td>{{$historiaclinica->descripcionhistoriaclinica}}</td>
+            <td>{{$historiaclinica->descripcionhistoria}}</td>
             <td>
                 
                 <a  href="{{url('/historiaclinicas/'.$historiaclinica->id.'/edit')}}">
@@ -52,7 +47,11 @@
                 <input  type="submit" onclick="return confirm('¿Deseas eleminar permanentemente?')" 
                 value="borrar">
                 </form>
-
+                <a href="{{url('/historiaclinicas/'.$historiaclinica->id)}}">Detalles</a>
+                <br>
+               
+                <a href="{{url('/procesos/')}}">Proceso</a>
+                
 
 
             </td>

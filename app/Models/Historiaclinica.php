@@ -9,7 +9,7 @@ class Historiaclinica extends Model
 {
     use HasFactory;
     protected $fillable =[
-        'fechacreacionhistoria',
+        'fechadecreacionhistoria',
         'descripcionhistoriaclinica',
         'id_Doctor',
         'id_Paciente',
@@ -23,5 +23,10 @@ class Historiaclinica extends Model
     public function paciente ()
     {
         return $this->belongsTo(Paciente::class,'id_Paciente');
+    }
+
+    public function proceso()
+    {
+        return $this->belongsToMany(Proceso::class,'id_Historiaclinica');
     }
 }

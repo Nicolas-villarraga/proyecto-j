@@ -48,7 +48,6 @@
                 </tr>
                 <br>
             </table>
-            <a class="btn btn-outline-warning" href="/historiaclinicas/">Historias</a>
             <a class="btn btn-outline-warning" href="/pacientes/">volver</a>
         </div>
     </div>

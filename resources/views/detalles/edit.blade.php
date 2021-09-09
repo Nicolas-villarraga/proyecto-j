@@ -6,7 +6,7 @@
 @section('content')
 <div class="container">
 
-<form action="{{url('/detalles/'.$detalle->id)}}" method="post">
+<form action="{{url('/detalles/'.$detalles->id)}}" method="post">
 @csrf
 
 @method('PATCH')

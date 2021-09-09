@@ -71,9 +71,10 @@ class ProductoController extends Controller
      * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function show(Producto $producto)
+    public function show($id)
     {
-        //
+        $producto=Producto::find($id);
+        return view('productos.show',compact('producto'));
     }
 
     /**
@@ -115,7 +116,7 @@ class ProductoController extends Controller
         $this->validate($request, $campos,$mensaje);
 
         $producto = request()->except(['_token','_method']);
-        Producto::where('id_Producto','=',$id)->update($producto);
+        Producto::where('id','=',$id)->update($producto);
 
         $producto = Producto::findOrFail($id);
         return redirect('productos')->with('mensaje','Producto Modificado');

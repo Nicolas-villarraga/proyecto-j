@@ -64,9 +64,10 @@ class PedidoController extends Controller
      * @param  \App\Models\Pedido  $pedido
      * @return \Illuminate\Http\Response
      */
-    public function show(Pedido $pedido)
+    public function show($id)
     {
-        //
+        $pedido=Pedido::find($id);
+        return view('pedidos.show',compact('pedido'));
     }
 
     /**

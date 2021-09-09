@@ -38,7 +38,6 @@
             <td>{{$producto->preciocompra}}</td>
             <td>{{$producto->precioventa}}</td>
             <td>{{$producto->cantidadproducto}}</td>
-            <td>{{$producto->proveedor->nombreproveedor}}</td>
             <td>
                 
                 <a href="{{url('/productos/'.$producto->id.'/edit')}}">
@@ -51,6 +50,7 @@
                 <input type="submit" onclick="return confirm('¿Deseas eleminar permanentemente?')" 
                 value="borrar">
                 </form>
+                <a href="{{url('/productos/'.$producto->id)}}">Detalles</a>
 
 
 

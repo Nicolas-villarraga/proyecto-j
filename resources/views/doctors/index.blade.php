@@ -53,6 +53,9 @@
                 <input type="submit" onclick="return confirm('¿Deseas eleminar permanentemente?')" 
                 value="borrar">
                 </form>
+                <a href="{{url('/doctors/'.$doctor->id)}}">
+                    Detalles
+                </a>
 
 
 

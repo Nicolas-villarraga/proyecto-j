@@ -26,8 +26,11 @@
                     <td>Cantidad</td>
                     <td>{{$producto->cantidadproducto}}</td>
                 </tr>
+                <tr>
+                    <td>Marca</td>
+                    <td>{{$producto->proveedor->marcaproveedor}}</td>
+                </tr>
             </table>
-            <a class="btn btn-outline-warning" href="/detalleproductos/">Detalle</a>
             <a class="btn btn-outline-warning" href="/productos/">volver</a>
         </div>
     </div>

@@ -14,10 +14,12 @@ class Pedido extends Model
         'horapedido',
         'totalpedido',
         'observacionespedido',
+        'id_Paciente',
+
     ];
 
     public function paciente()
     {
-        return $this->belongsTo(Pedido::class,'id_Paciente');
+        return $this->belongsTo(Paciente::class,'id_Paciente');
     }
 }

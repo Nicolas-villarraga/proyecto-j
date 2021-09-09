@@ -25,7 +25,7 @@ class Proceso extends Model
     
     public function historia()
     {
-        return $this->belongsTo(Historiaclinica::class,'id_historiaclinica');
+        return $this->belongsTo(Historiaclinica::class,'id_Historiaclinica');
     }
 }
 

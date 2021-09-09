@@ -31,9 +31,8 @@
         <tr>
             <td>{{$proceso ->id}}</td>
             <td>{{$proceso->fechaproceso}}</td>
-            <td>{{$proceso->observacionesproceso}}</td>
+            <td>{{$proceso->observacionesdeproceso}}</td>
             <td>{{$proceso->Doctor->nombredoctor}}</td>
-            <td>{{$proceso->historia->id}}</td>
             
             <td>
                 
@@ -47,6 +46,7 @@
                 <input type="submit" onclick="return confirm('¿Deseas eleminar permanentemente?')" 
                 value="borrar">
                 </form>
+                <a href="{{url('/procesos/'.$proceso->id)}}">Detalles</a>
 
 
 

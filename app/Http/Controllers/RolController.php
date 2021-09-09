@@ -62,9 +62,10 @@ class RolController extends Controller
      * @param  \App\Models\Rol  $rol
      * @return \Illuminate\Http\Response
      */
-    public function show(Rol $rol)
+    public function show($id)
     {
-        //
+        $rol=Rol::find($id);
+        return view('rols.show',compact('rol'));
     }
 
     /**

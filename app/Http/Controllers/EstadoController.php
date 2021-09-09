@@ -62,9 +62,10 @@ class EstadoController extends Controller
      * @param  \App\Models\Estado  $estado
      * @return \Illuminate\Http\Response
      */
-    public function show(Estado $estado)
+    public function show($id)
     {
-        //
+        $estado=Estado::find($id);
+        return view('estados.show',compact('estado'));
     }
 
     /**

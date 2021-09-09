@@ -17,8 +17,8 @@
 
 @endif
 
-<label for="fechacreacionhistoria">fecha</label>
-<input type="date" name="fechacreacionhistoria" value="{{ isset($historiaclinica->fechacreacionhistoria)?$historiaclinica->fechacreacionhistoria:old('fecha')}}" id="fechacreacionhistoria">
+<label for="fechadecreacionhistoria">fecha</label>
+<input type="date" name="fechadecreacionhistoria" value="{{ isset($historiaclinica->fechadecreacionhistoria)?$historiaclinica->fechadecreacionhistoria:old('fecha')}}" id="fechadecreacionhistoria">
 <br>
 <label for="id_Doctor">Doctor</label>
 <select name="id_Doctor" id="id_Doctor">
@@ -35,8 +35,8 @@
 </select>
 <br>
 <div class="mb-3">
-  <label for="descripcionhistoriaclinica" class="form-label">Descripcion</label>
-  <textarea  type="text" name="descripcionhistoriaclinica" value="{{ isset($historiaclinica->descripcionhistoriaclinica)?$historiaclinica->descripcionhistoriaclinica:old('descripcion')}}" id="descripcionhistoriaclinica" rows="3"></textarea>
+  <label for="descripcionhistoria" class="form-label">Descripcion</label>
+  <textarea  type="text" name="descripcionhistoria" value="{{ isset($historiaclinica->descripcionhistoria)?$historiaclinica->descripcionhistoria:old('descripcion')}}" id="descripcionhistoria" rows="8"></textarea>
 </div>
 <br>
 <input type="submit" value="{{$modo}}">

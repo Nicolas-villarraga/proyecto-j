@@ -47,9 +47,7 @@
                 <input type="submit" onclick="return confirm('¿Deseas eleminar permanentemente?')" 
                 value="borrar">
                 </form>
-
-
-
+                <a class="btn btn-outline-warning" href="{{url('/pedidos/'.$pedido->id)}}">detalle</a>
             </td>
         </tr>
         @endforeach

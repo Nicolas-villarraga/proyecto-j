@@ -67,9 +67,10 @@ class ProveedorController extends Controller
      * @param  \App\Models\Proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function show(Proveedor $proveedor)
+    public function show($id)
     {
-        //
+        $proveedor=Proveedor::find($id);
+        return view('proveedors.show',compact('proveedor'));
     }
 
     /**

@@ -7,6 +7,10 @@
         <div class="col-mb-4 col-md-offset-4">
             <table>
                 <tr>
+                    <td>Nombre</td>
+                    <td>{{$proveedor->nombreproveedor}}</td>
+                </tr>
+                <tr>
                     <td>Nit</td>
                     <td>{{$proveedor->nitproveedor}}</td>
                 </tr>
@@ -25,14 +29,6 @@
                 <tr>
                     <td>Marca</td>
                     <td>{{$proveedor->marcaproveedor}}</td>
-                </tr>
-                <tr>
-                    <td>Nombre</td>
-                    <td>{{$paciente->nombreproveedor}}</td>
-                </tr>
-                <tr>
-                    <td>Producto</td>
-                    <td>{{$paciente->id_Producto}}</td>
                 </tr>
             </table>
             <a class="btn btn-outline-warning" href="/proveedors/">volver</a>

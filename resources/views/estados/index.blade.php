@@ -1,4 +1,4 @@
-<h2>lista de citas</h2>
+<h2>lista de Estados</h2>
 
 @extends('layouts.app')
 @section('content')
@@ -15,7 +15,7 @@
     </button>
 </div>
 
-<a href="{{url('estados/create')}}">Nueva estado</a>
+<a href="{{url('estados/create')}}">Nuevo estado</a>
 
 <table class="table table-dark">
     <thead class="thead-dark">
@@ -42,8 +42,9 @@
                 <input type="submit" onclick="return confirm('¿Deseas eleminar permanentemente?')" 
                 value="borrar">
                 </form>
-
-
+                <a href="{{url('/estados/'.$estado->id)}}">
+                    Detalles
+                </a>
 
             </td>
         </tr>

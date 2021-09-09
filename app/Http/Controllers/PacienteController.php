@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Estado;
 use App\Models\Genero;
-use App\Models\Historiaclinica;
 use App\Models\Paciente;
 use App\Models\Tipodocumento;
 use Illuminate\Http\Request;

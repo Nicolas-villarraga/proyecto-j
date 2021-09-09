@@ -62,9 +62,10 @@ class EspecialidadController extends Controller
      * @param  \App\Models\Especialidad  $especialidad
      * @return \Illuminate\Http\Response
      */
-    public function show(Especialidad $especialidad)
+    public function show($id)
     {
-        //
+        $especialidad=Especialidad::find($id);
+        return view('especialidads.show',compact('especialidad'));
     }
 
     /**

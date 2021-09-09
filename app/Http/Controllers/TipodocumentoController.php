@@ -62,9 +62,10 @@ class TipodocumentoController extends Controller
      * @param  \App\Models\Tipodocumento  $tipodocumento
      * @return \Illuminate\Http\Response
      */
-    public function show(Tipodocumento $tipodocumento)
+    public function show($id)
     {
-        //
+        $tipodocumento =Tipodocumento::find($id);
+        return view('tipodocumentos.show',compact('tipodocumento'));
     }
 
     /**

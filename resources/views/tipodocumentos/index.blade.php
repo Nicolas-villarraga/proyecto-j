@@ -29,7 +29,7 @@
         @foreach ($tipodocumentos as $tipodocumento)
         <tr>
             <td>{{$tipodocumento->id}}</td>
-            <td>{{$tipodocumento->nombretipodocumento}}</td>
+            <td>{{$tipodocumento->nombredocumento}}</td>
             <td>
                 
                 <a href="{{url('/tipodocumentos/'.$tipodocumento->id.'/edit')}}">
@@ -42,6 +42,7 @@
                 <input type="submit" onclick="return confirm('¿Deseas eleminar permanentemente?')" 
                 value="borrar">
                 </form>
+                <a href="{{url('/tipodocumentos/'.$tipodocumento->id)}}">Detalles</a>
 
 
 

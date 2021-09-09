@@ -7,23 +7,26 @@
         <div class="col-mb-4 col-md-offset-4">
             <table>
                 <tr>
-                    <td>Nombre</td>
-                    <td>{{$pedido->fecha}}</td>
+                    <td>Fecha</td>
+                    <td>{{$pedido->fechapedido}}</td>
                 </tr>
                 <tr>
-                    <td>Apellido</td>
-                    <td>{{$pedido->hora}}</td>
+                    <td>Hora</td>
+                    <td>{{$pedido->horapedido}}</td>
                 </tr>
                 <tr>
-                    <td>Tipo de Documento</td>
+                    <td>Total</td>
                     <td>{{$pedido->totalpedido}}</td>
                 </tr>
                 <tr>
-                    <td>Documento</td>
+                    <td>Observaciones :</td>
                     <td>{{$pedido->observacionespedido}}</td>
                 </tr>
+                <tr>
+                    <td>Paciente :</td>
+                    <td>{{$pedido->paciente->nombrepaciente}}</td>
+                </tr>
             </table>
-            <a class="btn btn-outline-warning" href="/detallepedidos/">detalle</a>
             <a class="btn btn-outline-warning" href="/pedidos/">volver</a>
         </div>
     </div>

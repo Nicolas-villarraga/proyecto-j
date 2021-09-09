@@ -42,6 +42,7 @@
                 <input type="submit" onclick="return confirm('¿Deseas eleminar permanentemente?')" 
                 value="borrar">
                 </form>
+                <a href="{{url('/rols/'.$rol->id)}}">Detalles</a>
             </td>
         </tr>
         @endforeach

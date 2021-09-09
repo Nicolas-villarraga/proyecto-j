@@ -80,9 +80,11 @@ class CitaController extends Controller
      * @param  \App\Models\Cita  $cita
      * @return \Illuminate\Http\Response
      */
-    public function show(Cita $cita)
+    public function show($id)
     {
-        //
+        $cita = Cita::find($id);
+        return view('citas.show',compact('cita'));
+
     }
 
     /**

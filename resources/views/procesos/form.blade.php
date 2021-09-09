@@ -20,8 +20,8 @@
 <label for="fechaproceso">Fecha</label>
 <input type="date" name="fechaproceso" value="{{ isset($proceso->fechaproceso)?$proceso->fechaproceso:old('fechaproceso')}}"id="fechaproceso">
 <br>
-<label for="observacionesproceso">Observaciones</label>
-<input type="text" name="observacionesproceso" value="{{ isset($proceso->observacionesproceso)?$proceso->observacionesproceso:old('observacionesproceso')}}"id="observacionesproceso">
+<label for="observacionesdeproceso">Observaciones</label>
+<input type="text" name="observacionesdeproceso" value="{{ isset($proceso->observacionesdeproceso)?$proceso->observacionesdeproceso:old('observacionesdeproceso')}}"id="observacionesdeproceso">
 <br>
 <label for="id_Doctor">Doctor</label>
 <select name="id_Doctor" id="id_Doctor">
@@ -30,8 +30,8 @@
 @endforeach
 </select>
 <br>
-<label for="id_Historiaclinicas">Historia</label>
-<select name="id_Historiaclinicas" id="id_Historiaclinicas">
+<label for="id_Historiaclinica">Historia</label>
+<select name="id_Historiaclinica" id="id_Historiaclinica">
   @foreach ($historiaclinicas as $historiaclinica)
       <option value="{{$historiaclinica->id}}">{{$historiaclinica->id}}</option>
   @endforeach

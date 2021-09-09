@@ -17,8 +17,12 @@
 
 @endif
 
-<label for=nombreproducto">Nombre de producto</label>
-<input type="text" name="nombreproducto" value="{{ isset($detalleproducto->nombreproducto)?$detalleproducto->nombreproducto:old('nombreproducto')}}" id="nombreproducto">
+<label for="id_Producto">Nombre de Producto</label>
+<select name="id_Producto" id="id_Producto">
+  @foreach ($productos as $producto)
+      <option value="{{$producto->id}}">{{$producto->nombreproducto}}</option>
+  @endforeach
+</select>
 <br>
 <label for="descripcionproducto">Descripcion</label>
 <input type="text" name="descripcionproducto" value="{{ isset($detalleproducto->descripcionproducto)?$detalleproducto->descripcionproducto:old('descripcionproducto')}}" id="descripcionproducto">
@@ -28,13 +32,6 @@
 <br>
 <label for="valorproducto">valor</label>
 <input type="number" name="valorproducto" value="{{isset($detalleproducto->valorproducto)?$detalleproducto->valorproducto:old('valorproducto')}}" id="valorproducto">
-<br>
-<label for="id_Producto">Producto</label>
-<select name="id_Producto" id="id_Producto">
-  @foreach ($productos as $producto)
-      <option value="{{$producto->id}}">{{$producto->nombreproducto}}</option>
-  @endforeach
-</select>
 <br>
 <label for="id_Pedido">Pedido</label>
 <select name="id_Pedido" id="id_Pedido">

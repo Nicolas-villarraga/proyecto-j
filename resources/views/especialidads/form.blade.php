@@ -17,7 +17,7 @@
 
 @endif
 
-<label for=nombreespecialidad">Nombre de producto</label>
+<label for=nombreespecialidad">Nombre de Especialidad</label>
 <input type="text" name="nombreespecialidad" value="{{ isset($especialidad->nombreespecialidad)?$especialidad->nombreespecialidad:old('especialidad')}}" id="nombreespecialidad">
 <br>
 

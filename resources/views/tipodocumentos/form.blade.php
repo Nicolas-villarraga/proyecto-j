@@ -17,8 +17,8 @@
 
 @endif
 
-<label for=nombretipodocumento">Nombre documento</label>
-<input type="text" name="nombretipodocumento" value="{{ isset($tipodocumento->nombretipodocumento)?$tipodocumento->nombretipodocumento:old('nombretipodocumento')}}" id="nombretipodocumento">
+<label for=nombredocumento">Nombre documento</label>
+<input type="text" name="nombredocumento" value="{{ isset($tipodocumento->nombredocumento)?$tipodocumento->nombredocumento:old('nombredocumento')}}" id="nombredocumento">
 <br>
 <input type="submit" value="{{$modo}}">
 

@@ -15,7 +15,7 @@
     </button>
 </div>
 
-<a href="{{url('detalles/create')}}">Nuevo detalle</a>
+<a class="btn btn-outline-warning" href="{{url('detalles/create')}}">Nuevo detalle</a>
 
 <table class="table table-dark">
     <thead class="thead-dark">
@@ -32,24 +32,25 @@
         @foreach ($detalles as $detalle)
         <tr>
             <td>{{$detalle->id}}</td>
-            <td>{{$detalle->nombreproducto}}</td>
+            <td>{{$detalle->producto->nombreproducto}}</td>
             <td>{{$detalle->descripcionproducto}}</td>
             <td>{{$detalle->cantidadproducto}}</td>
             <td>{{$detalle->valorproducto}}</td>
-            <td>{{$detalle->producto->nombreproducto}}</td>
-            <td>{{$detalle->pedido->id}}</td>
+
             <td>
                 
-                <a href="{{url('/detalles/'.$detalles->id.'/edit')}}">
-                    editar
+                <a class="btn btn-outline-warning" href="{{url('/detalles/'.$detalle->id.'/edit')}}">
+                    Editar
                 </a>
-                 | 
                 <form action="{{ url('/detalles/'.$detalle->id ) }}" method="post">
                 @csrf
                 @method('DELETE')
                 <input type="submit"   onclick="return confirm('¿Deseas eleminar permanentemente?')" 
                 value="borrar">
                 </form>
+                <a class="btn btn-outline-warning" href="{{url('/detalles/'.$detalle->id)}}">
+                    Detalles
+                </a>
 
 
 

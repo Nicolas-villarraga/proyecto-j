@@ -44,11 +44,10 @@ class DetalleController extends Controller
     {
         //
         $campos=[
-            'nombreproducto'=>'required|string|max:50',
-            'descripcionproducto'=>'required|date',
+            'id_Producto'=>'required|string',
+            'descripcionproducto'=>'required|',
             'cantidadproducto'=>'required|',
             'valorproducto'=>'required|',  
-            'id_Producto'=>'required|string',
             'id_Pedido'=>'required|string',
         ];
 
@@ -71,9 +70,10 @@ class DetalleController extends Controller
      * @param  \App\Models\Detalle  $detalle
      * @return \Illuminate\Http\Response
      */
-    public function show(Detalle $detalle)
+    public function show($id)
     {
-        //
+        $detalles=Detalle::find($id);
+        return view('detalles.show',compact('detalles'));
     }
 
     /**
@@ -100,11 +100,10 @@ class DetalleController extends Controller
     public function update(Request $request, $id)
     {
         $campos=[
-            'nombreproducto'=>'required|string|max:50',
-            'descripcionproducto'=>'required|date',
+            'id_Producto'=>'required|string',
+            'descripcionproducto'=>'required|',
             'cantidadproducto'=>'required|',
             'valorproducto'=>'required|',  
-            'id_Producto'=>'required|string',
             'id_Pedido'=>'required|string',
         ];
 

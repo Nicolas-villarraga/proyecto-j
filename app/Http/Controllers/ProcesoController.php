@@ -45,9 +45,8 @@ class ProcesoController extends Controller
         //
         $campos=[
             'fechaproceso'=>'required|string|max:50',
-            'observacionesproceso'=>'required',
-            'id_Doctor'=>'required|string',  
-            'id_Historiaclinica'=>'required|string',
+            'observacionesdeproceso'=>'required',
+            'id_Doctor'=>'required|string',
         ];
 
         $mensaje=[
@@ -69,9 +68,10 @@ class ProcesoController extends Controller
      * @param  \App\Models\Proceso  $proceso
      * @return \Illuminate\Http\Response
      */
-    public function show(Proceso $proceso)
+    public function show($id)
     {
-        //
+        $proceso=Proceso::find($id);
+        return view('procesos.show',compact('proceso'));
     }
 
     /**
@@ -100,10 +100,9 @@ class ProcesoController extends Controller
     {
         //
         $campos=[
-            'id_Doctor'=>'required|string|max:50',
-            'fecha'=>'required|date',
-            'hora'=>'required|string',
-            'id_Especialidad'=>'required|string|max:100',
+            'fechaproceso'=>'required|string|max:50',
+            'observacionesdeproceso'=>'required',
+            'id_Doctor'=>'required|string',
         ];
 
         $mensaje=[
