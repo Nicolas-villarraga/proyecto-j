@@ -1,6 +1,8 @@
-<h2>lista de Gneros</h2>
-
 @extends('layouts.app')
+@section('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.1/css/dataTables.bootstrap5.min.css">
+@endsection
 @section('content')
 <div class="container">
 
@@ -17,8 +19,8 @@
 
 <a href="{{url('generos/create')}}">Nuevo Genero</a>
 
-<table class="table table-dark">
-    <thead class="thead-dark">
+<table  id="genero"   class="table table-striped table-bordered" style="width:100%">
+    <thead class=" bg-primary text-white">
         <tr>
             <th>ID</th>
             <th>Nombre Genero</th>
@@ -50,7 +52,16 @@
         </tr>
         @endforeach
     </tbody>
-
+    @section('js')
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.1/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function() {
+        $('#genero').DataTable();
+        } );
+    </script>
+    @endsection
 </table>
 </div>
 @endsection

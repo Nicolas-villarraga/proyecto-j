@@ -16,7 +16,6 @@ use App\Http\Controllers\ProveedorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\TipodocumentoController;
-use App\Models\Proceso;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,5 +48,3 @@ Route::resource('productos',ProductoController::class);
 Route::resource('proveedors',ProveedorController::class);
 Route::resource('procesos',ProcesoController::class);
 
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
